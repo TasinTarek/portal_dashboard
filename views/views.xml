@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="smartedu_portal.list">
+      <field name="name">smartedu_portal list</field>
+      <field name="model">smartedu_portal.smartedu_portal</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="smartedu_portal.action_window">
+      <field name="name">smartedu_portal window</field>
+      <field name="res_model">smartedu_portal.smartedu_portal</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="smartedu_portal.action_server">
+      <field name="name">smartedu_portal server</field>
+      <field name="model_id" ref="model_smartedu_portal_smartedu_portal"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="smartedu_portal" id="smartedu_portal.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="smartedu_portal.menu_1" parent="smartedu_portal.menu_root"/>
+    <menuitem name="Menu 2" id="smartedu_portal.menu_2" parent="smartedu_portal.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="smartedu_portal.menu_1_list" parent="smartedu_portal.menu_1"
+              action="smartedu_portal.action_window"/>
+    <menuitem name="Server to list" id="smartedu_portal" parent="smartedu_portal.menu_2"
+              action="smartedu_portal.action_server"/>
+-->
+  </data>
+</odoo>
