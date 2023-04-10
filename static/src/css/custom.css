@@ -1,20 +1,25 @@
+._container {
+  background-color: #d5caec57;
+  color: #000000;
+  padding: 3rem;
+}
 .color1 {
-  background-color: lightblue;
+  background-color: rgba(178, 219, 233, 0.432);
 }
 
 .color2 {
-  background-color: rgb(194, 225, 177);
+  background-color:#d5caec57;
 }
 
 .color3 {
-  background-color: rgb(194, 225, 177);
+  background-color: #d5caec57;
 }
 
 .color4 {
-  background-color: rgb(194, 225, 177);
+  background-color: #d5caec57;
 }
 .color5 {
-  background-color: rgb(194, 225, 177);
+  background-color: #d5caec57;
 }
 
 .minus_margin {
@@ -43,8 +48,11 @@ section {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   margin: auto;
-  gap: 2rem;
+  gap: 1rem;
   width: 75%;
+  background-color: rgba(255, 255, 255, 0.575);
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 576px) {

@@ -28,7 +28,7 @@
         </div>
       </xpath>
     </template>
-    <!-- Student Dashboardgit init -->
+    <!-- Student Dashboard-->
     <template id="se_student_template" name="My Student Template">
       <t t-call="portal.portal_layout">
         <t t-foreach="info" t-as="info" />
@@ -228,7 +228,8 @@
                 <td>
                   <t t-esc="informations.name" />
                 </td>
-                <td><t t-esc="informations.email" />
+                <td>
+                  <t t-esc="informations.email" />
                 </td>
                 <td>
                   <a href="/my/admission/online/applications/list/form"
@@ -364,7 +365,7 @@
                 </div>
               </div>
             </div>
-            <form type='submit'>
+            <form role="form" class="_container" method="POST">
               <section id="section1" style="display: block">
 
                 <div class="container">
@@ -385,33 +386,25 @@
                   </div>
 
                   <div class="row">
-                    <!-- <div class="col-3 xs:col-1">
-                                <label for='first_name'>First Name</label>
-                                <input type="text" class="form-control"
-                                    placeholder="Type your First Name" />
-                            </div>
-                            <div class="col-3 xs:col-1">
-                                <label for='middle_name'>Middle Name</label>
-                                <input type="text" class="form-control"
-                                    placeholder="Type your Middle Name" />
-                            </div>
-                            <div class="col">
-                            <label for='last_name'>Last Name</label>
-                                <input type="text" class="form-control"
-                                    placeholder="Type your Last Name" />
-                            </div> -->
-                    <div class="input-group">
-                      <span class="input-group-text">First
-                        &amp; Last name</span>
-                      <input type="text" aria-label="First name"
-                        class="form-control" />
-                      <input type="text" aria-label="Last name"
-                        class="form-control" />
+                    <div class="form-group mb-3">
+                      <label for="firstName">First Name</label>
+                      <input type="text" class="form-control" id="firstName"
+                        placeholder="Enter First Name" />
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="middleName">Middle Name</label>
+                      <input type="text" class="form-control" id="middleName"
+                        placeholder="Enter Middle Name" />
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="lastName">Last Name</label>
+                      <input type="text" class="form-control" id="lastName"
+                        placeholder="Enter Last Name" />
                     </div>
                   </div>
                   <div>
                     <div class="row ">
-                      <div class="col my-1">
+                      <div class="col my-1 mb-3">
 
                         <label>Student
                           ID</label>
@@ -426,28 +419,28 @@
 
                     </div>
                     <div class="row my-1">
-                      <div class="col-md-6 col-sm-12">
+                      <div class="col-md-6 col-sm-12 mb-3">
                         <div>
                           <label for="last_name">Application
                             Serial No.</label>
                           <input type="text" class="form-control"
                             placeholder="" />
                         </div>
-                        <div>
+                        <div class="mb-3">
                           <label>Register
                             ID</label>
                           <input type="text" class="form-control"
                             placeholder="" />
                         </div>
-                        <div>
+                        <div class='mb-3'>
                           <label>Application
                             Number</label>
                           <input type="text" class="form-control"
                             placeholder="" />
                         </div>
                       </div>
-                      <div class="col-md-6 col-sm-12">
-                        <div class="form-group">
+                      <div class="col-md-6  col-sm-12">
+                        <div class="form-group mb-3">
                           <label for="inputDateOfBirth">Application
                             Date</label>
                           <input
@@ -457,7 +450,7 @@
                             placeholder="Enter Date of Birth"
                           />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                           <label for="inputDateOfBirth">Admission
                             Date</label>
                           <input
@@ -467,7 +460,7 @@
                             placeholder="Enter Date of Birth"
                           />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                           <label for="inputDateOfBirth">Admission
                             End Date</label>
                           <input
@@ -483,7 +476,7 @@
                   </div>
                   <div class="row my-5">
                     <div class="col-md-6 col-sm-12">
-                      <div class="form-group ">
+                      <div class="form-group mb-3 ">
                         <label for="inputProgram">Select
                           Program</label>
                         <select class="form-control" id="inputDegree">
@@ -495,7 +488,7 @@
                           <option>PhD</option>
                         </select>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputCurriculumn">
                           Curriculumn</label>
                         <select class="form-control" id="inputDegree">
@@ -507,7 +500,7 @@
                           <option>PhD</option>
                         </select>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputBatch">
                           Batch</label>
                         <select class="form-control" id="inputDegree">
@@ -519,7 +512,7 @@
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label>Admission
                           Form Fee</label>
                         <div class="input-group">
@@ -533,7 +526,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label>Admission
                           Fee </label>
                         <div class="input-group">
@@ -546,7 +539,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputFeesType">Fees
                           Type</label>
                         <select class="form-control" id="inputDegree">
@@ -556,7 +549,7 @@
                             Two</option>
                         </select>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label>Registration
                           Fees Ref.</label>
                         <input type="text" class="form-control" placeholder="" />
@@ -573,7 +566,7 @@
                           <h5>Faculty
                             &amp; Department</h5>
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group mb-3 ">
                           <label for="inputFaculty">
                             Faculty</label>
                           <select class="form-control" id="inputDegree">
@@ -583,7 +576,7 @@
                             <option>Type Two</option>
                           </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                           <label for="inputDepartment">
                             Department</label>
                           <select class="form-control" id="inputDegree">
@@ -601,7 +594,7 @@
                           <h5>
                             Semester</h5>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                           <label for="inputSemester">
                             Semester</label>
                           <select class="form-control" id="inputDegree">
@@ -611,7 +604,7 @@
                             <option>Type Two</option>
                           </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                           <label for="inputSemesterType">Semester
                             Type</label>
                           <select class="form-control" id="inputDegree">
@@ -621,7 +614,7 @@
                             <option>Type Two</option>
                           </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                           <label for="inputSemesterYear">Semester
                             Year</label>
                           <select class="form-control" id="inputDegree">
@@ -640,7 +633,7 @@
                   <div>
                     <h5 class="my-4">Academic</h5>
                     <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="inputApplyType">Apply Type</label>
                         <select class="form-control" id="inputDegree">
                           <option>Choose
@@ -649,7 +642,7 @@
                           <option>Type Two</option>
                         </select>
                       </div>
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="inputStudentType">Student
                           Type</label>
                         <select class="form-control" id="inputDegree">
@@ -662,7 +655,7 @@
 
                     </div>
                     <div class="row">
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="inputEducationShift">Education
                           Shift</label>
                         <select class="form-control" id="inputDegree">
@@ -672,7 +665,7 @@
                             Two</option>
                         </select>
                       </div>
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="inputCampus">
                           Campus </label>
                         <select class="form-control" id="inputDegree">
@@ -684,15 +677,19 @@
                       </div>
                     </div>
                   </div>
-                  <a class="text-decoration-none" href="#topp">
-                    <button
-                      type="button"
-                      class="btn btn-outline-success my-5"
-                      onclick="nextSection()"
-                    >
-                      Next
-                    </button>
-                  </a>
+                  <div class="d-flex justify-content-end">
+                    <div>
+                      <a class="text-decoration-none" href="#topp">
+                        <button
+                          type="button"
+                          class="btn btn-outline-success my-5"
+                          onclick="nextSection()"
+                        >
+                          Next
+                        </button>
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
               </section>
@@ -705,8 +702,8 @@
                   <div class="row">
                     <div class="col-md-6">
                       <h5 class='my-4'>Secondary School Certificate (SSC)</h5>
-                      <div class="form-row m-2">
-                        <div class="form-group col">
+                      <div class="form-row ">
+                        <div class="form-group mb-3 col">
                           <label for="inputRegistration">Registration
                             Number</label>
                           <input
@@ -716,7 +713,7 @@
                             placeholder="Enter Registration Number"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputRoll">Roll
                             Number</label>
                           <input
@@ -726,7 +723,7 @@
                             placeholder="Enter Roll Number"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputInstitution">Institution
                             Name</label>
                           <input
@@ -736,7 +733,7 @@
                             placeholder="Enter Institution Name"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputYearOfCompletion">Year
                             of
                             Completion</label>
@@ -748,7 +745,7 @@
                           />
                         </div>
                       </div>
-                      <div class="form-group col">
+                      <div class="form-group mb-3 col">
                         <label for="inputFieldOfStudy">Field
                           of Study</label>
                         <input
@@ -759,7 +756,7 @@
                         />
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputAchievements">
                           Achievements</label>
                         <textarea
@@ -772,8 +769,8 @@
                     <div class="col-md-6">
                       <h5 class="my-4">Higher-Secondary
                         School Certificate (HSC)</h5>
-                      <div class="form-row m-2">
-                        <div class="form-group col">
+                      <div class="form-row ">
+                        <div class="form-group mb-3 col">
                           <label for="inputRegistration">Registration Number</label>
                           <input
                             type="text"
@@ -782,7 +779,7 @@
                             placeholder="Enter Registration Number"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputRoll">Roll
                             Number</label>
                           <input
@@ -792,7 +789,7 @@
                             placeholder="Enter Roll Number"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputInstitution">Institution
                             Name</label>
                           <input
@@ -802,7 +799,7 @@
                             placeholder="Enter Institution Name"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputYearOfCompletion">Year
                             of
                             Completion</label>
@@ -814,7 +811,7 @@
                           />
                         </div>
                       </div>
-                      <div class="form-group col">
+                      <div class="form-group mb-3 col">
                         <label for="inputFieldOfStudy">Field
                           of Study</label>
                         <input
@@ -825,7 +822,7 @@
                         />
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputAchievements">
                           Achievements</label>
                         <textarea
@@ -840,8 +837,8 @@
                     <div class="col-md-6">
                       <h5 class="my-4">
                         O-Level</h5>
-                      <div class="form-row m-2">
-                        <div class="form-group col">
+                      <div class="form-row ">
+                        <div class="form-group mb-3 col">
                           <label for="inputRegistration">Registration Number</label>
                           <input
                             type="text"
@@ -850,7 +847,7 @@
                             placeholder="Enter Registration Number"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputRoll">Roll
                             Number</label>
                           <input
@@ -860,7 +857,7 @@
                             placeholder="Enter Roll Number"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputInstitution">Institution
                             Name</label>
                           <input
@@ -870,7 +867,7 @@
                             placeholder="Enter Institution Name"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputYearOfCompletion">Year
                             of
                             Completion</label>
@@ -882,7 +879,7 @@
                           />
                         </div>
                       </div>
-                      <div class="form-group col">
+                      <div class="form-group mb-3 col">
                         <label for="inputFieldOfStudy">Field
                           of Study</label>
                         <input
@@ -893,7 +890,7 @@
                         />
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputAchievements">
                           Achievements</label>
                         <textarea
@@ -906,8 +903,8 @@
                     <div class="col-md-6">
                       <h5 class="my-4">
                         A-Level</h5>
-                      <div class="form-row m-2">
-                        <div class="form-group col">
+                      <div class="form-row ">
+                        <div class="form-group mb-3 col">
                           <label for="inputRegistration">Registration Number</label>
                           <input
                             type="text"
@@ -916,7 +913,7 @@
                             placeholder="Enter Registration Number"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputRoll">Roll
                             Number</label>
                           <input
@@ -926,7 +923,7 @@
                             placeholder="Enter Roll Number"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputInstitution">Institution
                             Name</label>
                           <input
@@ -936,7 +933,7 @@
                             placeholder="Enter Institution Name"
                           />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group mb-3 col">
                           <label for="inputYearOfCompletion">Year
                             of
                             Completion</label>
@@ -948,7 +945,7 @@
                           />
                         </div>
                       </div>
-                      <div class="form-group col">
+                      <div class="form-group mb-3 col">
                         <label for="inputFieldOfStudy">Field
                           of Study</label>
                         <input
@@ -959,7 +956,7 @@
                         />
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputAchievements">
                           Achievements</label>
                         <textarea
@@ -970,25 +967,31 @@
                       </div>
                     </div>
                   </div>
-
-                  <a class="text-decoration-none" href="#topp">
-                    <button
-                      type="button"
-                      class="btn btn-outline-danger my-5"
-                      onclick="prevSection()"
-                    >
-                      Previous
-                    </button>
-                  </a>
-                  <a class="text-decoration-none" href="#topp">
-                    <button
-                      type="button"
-                      class="btn btn-outline-success my-5"
-                      onclick="nextSection()"
-                    >
-                      Next
-                    </button>
-                  </a>
+                  <!-- class="d-flex justify-content-end" -->
+                  <div class="d-flex justify-content-end">
+                    <div>
+                      <a class="text-decoration-none" href="#topp">
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger my-5"
+                          onclick="prevSection()"
+                        >
+                          Previous
+                        </button>
+                      </a>
+                    </div>
+                    <div>
+                      <a class="text-decoration-none" href="#topp">
+                        <button
+                          type="button"
+                          class="btn btn-outline-success my-5"
+                          onclick="nextSection()"
+                        >
+                          Next
+                        </button>
+                      </a>
+                    </div> 
+                  </div>
                 </div>
               </section>
               <!-- Personal Details Section 3 -->
@@ -998,11 +1001,9 @@
                   <h3 class="text-center my-2">Personal
                     Details</h3>
                   <div class="row">
-
-
                     <div class="row">
                       <!-- Gender -->
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="inputGender"> Gender </label>
                         <select class="form-control" id="inputGender">
                           <option>Choose Gender</option>
@@ -1013,7 +1014,7 @@
                         </select>
                       </div>
                       <!-- Maritial Status -->
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="inputMaritialStatus">
                           Maritial Status </label>
                         <select class="form-control" id="MaritialStatus">
@@ -1027,7 +1028,7 @@
                     </div>
                     <div class="row my-1">
                       <!-- Email -->
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="email">
                           Email</label>
                         <input
@@ -1037,7 +1038,7 @@
                           name="email"
                         />
                       </div>
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="alternateEmail">
                           Alternate Email</label>
                         <input
@@ -1050,7 +1051,7 @@
                     </div>
                     <div class="row my-1">
                       <!-- Phone Number -->
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="phone">Phone
                           Number</label>
                         <input
@@ -1060,7 +1061,7 @@
                           name="phone"
                         />
                       </div>
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="emergencyPhone">Emergency
                           Phone Number</label>
                         <input
@@ -1077,7 +1078,7 @@
                       <div class="col-md-6 col-sm-12">
                         <h3>Permanent
                           Address</h3>
-                        <div>
+                        <div class='mb-3'>
                           <label for="permanent-address" class="form-label"
                           >Permanent
                             Address</label>
@@ -1087,14 +1088,14 @@
                             id="permanent-address"
                           />
                         </div>
-                        <div>
+                        <div class='mb-3'>
                           <label for="permanent-zip" class="form-label"
                           >Permanent
                             Zip Code</label>
                           <input type="text" class="form-control"
                             id="permanent-zip" />
                         </div>
-                        <div>
+                        <div class='mb-3'>
                           <label for="permanent-district" class="form-label"
                           >Permanent
                             District</label>
@@ -1104,7 +1105,7 @@
                             id="permanent-district"
                           />
                         </div>
-                        <div>
+                        <div class='mb-3'>
                           <label for="permanent-country" class="form-label"
                           >Permanent
                             Country</label>
@@ -1115,31 +1116,31 @@
                           />
                         </div>
                       </div>
-                      <div class="col-md-6 col-sm-12">
+                      <div class=" col-md-6 col-sm-12">
                         <h3>Present
                           Address</h3>
-                        <div>
+                        <div class='mb-3'>
                           <label for="present-address" class="form-label"
                           >Present
                             Address</label>
                           <input type="text" class="form-control"
                             id="present-address" />
                         </div>
-                        <div>
+                        <div class='mb-3'>
                           <label for="present-zip" class="form-label"
                           >Present
                             Zip Code</label>
                           <input type="text" class="form-control"
                             id="present-zip" />
                         </div>
-                        <div>
+                        <div class='mb-3'>
                           <label for="present-district" class="form-label"
                           >Present
                             District</label>
                           <input type="text" class="form-control"
                             id="present-district" />
                         </div>
-                        <div>
+                        <div class='mb-3'>
                           <label for="present-country" class="form-label"
                           >Present
                             Country</label>
@@ -1162,7 +1163,7 @@
                     <!-- Personal Information  -->
                     <div class="row my-1">
 
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="inputMaritialStatus">
                           Religion</label>
                         <select class="form-control" id="religion">
@@ -1174,7 +1175,7 @@
                           <option>Others</option>
                         </select>
                       </div>
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="inputMaritialStatus">Blood
                           Group</label>
                         <select class="form-control" id="bloodgroup">
@@ -1195,13 +1196,13 @@
 
                     </div>
                     <div class="row my-1">
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="present-country" class="form-label"
                         >Whatsapp
                           No.</label>
                         <input type="text" class="form-control" id="whatsapp" />
                       </div>
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="present-country" class="form-label"
                         >Social
                           Network ID.</label>
@@ -1212,7 +1213,7 @@
                     </div>
                     <!-- Nationality -->
                     <div class="row my-1">
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="nationality">
                           Nationality</label>
                         <select class="form-control" id="nationality">
@@ -1228,7 +1229,7 @@
 
                         </select>
                       </div>
-                      <div class="form-group col-md-6 col-sm-12 ">
+                      <div class="form-group mb-3 col-md-6 col-sm-12 ">
                         <label for="nationalID" class="form-label"
                         >National
                           ID
@@ -1238,14 +1239,14 @@
                     </div>
                     <!-- Passport -->
                     <div class="row my-1">
-                      <div class="form-group col-md-6 col-sm-12 ">
+                      <div class="form-group mb-3 col-md-6 col-sm-12 ">
                         <label for="nationalID" class="form-label"
                         >Passport
                           ID
                           No.</label>
                         <input type="text" class="form-control" id="nationalID" />
                       </div>
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="nationality">Passport
                           Expire Date</label>
                         <input
@@ -1258,13 +1259,13 @@
                     </div>
                     <!-- Visa -->
                     <div class="row my-1">
-                      <div class="form-group col-md-6 col-sm-12 ">
+                      <div class="form-group mb-3 col-md-6 col-sm-12 ">
                         <label for="visa" class="form-label"
                         >Visa
                           No.</label>
                         <input type="text" class="form-control" id="visa" />
                       </div>
-                      <div class="form-group col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="visa-expire">Visa
                           Expire Date</label>
                         <input
@@ -1417,25 +1418,30 @@
 
 
                   </div>
-                  <a class="text-decoration-none" href="#topp">
-                    <button
-                      type="button"
-                      class="btn btn-outline-danger my-5"
-                      onclick="prevSection()"
-                    >
-                      Previous
-                    </button>
-                  </a>
-                  <a class="text-decoration-none" href="#topp">
-                    <button
-                      type="button"
-                      class="btn btn-outline-success my-5"
-                      onclick="nextSection()"
-                    >
-                      Next
-                    </button>
-                  </a>
-
+                  <div class="d-flex justify-content-end">
+                    <div>
+                      <a class="text-decoration-none" href="#topp">
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger my-5"
+                          onclick="prevSection()"
+                        >
+                          Previous
+                        </button>
+                      </a>
+                    </div>
+                    <div>
+                      <a class="text-decoration-none" href="#topp">
+                        <button
+                          type="button"
+                          class="btn btn-outline-success my-5"
+                          onclick="nextSection()"
+                        >
+                          Next
+                        </button>
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
               </section>
@@ -1455,7 +1461,7 @@
                         <input type="text" aria-label="First name" class="form-control" />
                         <input type="text" aria-label="Last name" class="form-control" />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3" >
                         <label for="inputContactFather">
                           Contact</label>
                         <input
@@ -1465,7 +1471,7 @@
                           placeholder="Enter Father's Number"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputEmailFather">
                           Email</label>
                         <input
@@ -1475,7 +1481,7 @@
                           placeholder="Enter Father's Email"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputNationalIdFather">National
                           ID</label>
                         <input
@@ -1485,7 +1491,7 @@
                           placeholder="Enter Father's Email"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputPassportIdFather">Passport
                           ID</label>
                         <input
@@ -1495,7 +1501,7 @@
                           placeholder="Enter Father's Passport ID"
                         />
                       </div>
-                      <div class="form-group col">
+                      <div class="form-group mb-3 col">
                         <label for="fatherDateOfBirth">Date
                           Of Birth</label>
                         <input
@@ -1505,7 +1511,7 @@
                           placeholder="Enter Date of Birth"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputAgeFather">
                           Age</label>
                         <input
@@ -1515,7 +1521,7 @@
                           placeholder="Enter Your Father's Age"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputOccupationFather">
                           Occupation</label>
                         <input
@@ -1525,7 +1531,7 @@
                           placeholder="Enter Your Father's Occupation"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputDesignationFather">
                           Designation</label>
                         <input
@@ -1535,7 +1541,7 @@
                           placeholder="Enter Your Father's Designation"
                         />
                       </div>
-                      <div class="form-group ">
+                      <div class="form-group mb-3 ">
                         <label>Annual
                           Income</label>
                         <div class="input-group">
@@ -1558,7 +1564,7 @@
                         <input type="text" aria-label="First name" class="form-control" />
                         <input type="text" aria-label="Last name" class="form-control" />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group  mb-3">
                         <label for="inputContactMother">
                           Contact</label>
                         <input
@@ -1568,7 +1574,7 @@
                           placeholder="Enter Mother's Number"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group  mb-3">
                         <label for="inputEmailMother">
                           Email</label>
                         <input
@@ -1578,7 +1584,7 @@
                           placeholder="Enter Mother's Email"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group  mb-3">
                         <label for="inputNationalIdMother">National
                           ID</label>
                         <input
@@ -1588,7 +1594,7 @@
                           placeholder="Enter Mother's Email"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group  mb-3">
                         <label for="inputPassportIdMother">Passport
                           ID</label>
                         <input
@@ -1598,7 +1604,7 @@
                           placeholder="Enter Mother's Passport ID"
                         />
                       </div>
-                      <div class="form-group col">
+                      <div class="form-group  mb-3 col">
                         <label for="motherDateOfBirth">Date
                           Of Birth</label>
                         <input
@@ -1608,7 +1614,7 @@
                           placeholder="Enter Date of Birth"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group  mb-3">
                         <label for="inputAgeMother">
                           Age</label>
                         <input
@@ -1618,7 +1624,7 @@
                           placeholder="Enter Your Mother's Age"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group  mb-3">
                         <label for="inputOccupationMother">
                           Occupation</label>
                         <input
@@ -1628,7 +1634,7 @@
                           placeholder="Enter Your Mother's Occupation"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group  mb-3">
                         <label for="inputDesignationMother">
                           Designation</label>
                         <input
@@ -1638,7 +1644,7 @@
                           placeholder="Enter Your Mother's Designation"
                         />
                       </div>
-                      <div class="form-group ">
+                      <div class="form-group  mb-3 ">
                         <label>Annual
                           Income</label>
                         <div class="input-group">
@@ -1668,7 +1674,7 @@
                             class="form-control" />
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group  mb-3">
                         <label for="inputEmailLocal">
                           Email</label>
                         <input
@@ -1678,7 +1684,7 @@
                           placeholder="Enter Local Guardian's Email"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputContactLocal">
                           Contact</label>
                         <input
@@ -1688,7 +1694,7 @@
                           placeholder="Enter Local Guardian's Number"
                         />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputNationalIdLocal">National
                           ID</label>
                         <input
@@ -1698,13 +1704,13 @@
                           placeholder="Enter Local Guardian's National Id"
                         />
                       </div>
-                      <div class="form-group col ">
+                      <div class="form-group mb-3 col ">
                         <label for="passportLocalID" class="form-label"
                         >Passport
                           ID No.</label>
                         <input type="text" class="form-control" id="passportLocalID" />
                       </div>
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="inputRlationship">
                           Relationship</label>
                         <input
@@ -1746,27 +1752,33 @@
 
 
                   </div>
-                  <a class="text-decoration-none" href="#topp">
-                    <button
-                      type="button"
-                      class="btn btn-outline-danger my-5"
-                      onclick="prevSection()"
-                    >
-                      Previous
-                    </button>
-                  </a>
-                  <a class="text-decoration-none" href="#topp">
-                    <button
-                      type="button"
-                      class="btn btn-outline-success my-5"
-                      onclick="nextSection()"
-                    >
-                      Next
-                    </button>
-                  </a>
+                  <div class="d-flex justify-content-end">
+                    <div>
+                      <a class="text-decoration-none" href="#topp">
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger my-5"
+                          onclick="prevSection()"
+                        >
+                          Previous
+                        </button>
+                      </a>
+                    </div>
+                    <div>
+                      <a class="text-decoration-none" href="#topp">
+                        <button
+                          type="button"
+                          class="btn btn-outline-success my-5"
+                          onclick="nextSection()"
+                        >
+                          Next
+                        </button>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </section>
-              <!-- Payment Details -->
+              <!-- Payment Details Section -->
               <section id="section5">
                 <div class="container">
                   <h2>Invoice
@@ -1776,7 +1788,7 @@
                     <div class="row">
                       <div class="col-md-6 col-sm-12">
 
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                           <label>Invoice</label>
                           <div class="input-group">
                             <input
@@ -1788,7 +1800,7 @@
                               ৳</span>
                           </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                           <label>Total
                             Amount</label>
                           <div class="input-group">
@@ -1800,7 +1812,7 @@
                             <span class="input-group-text">৳</span>
                           </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                           <label>Amount
                             Paid</label>
                           <div class="input-group">
@@ -1812,7 +1824,7 @@
                             <span class="input-group-text">৳</span>
                           </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                           <label>Amount
                             Due</label>
                           <div class="input-group">
@@ -1826,21 +1838,21 @@
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-12">
-                        <div>
+                        <div class='mb-3'>
                           <label for="payment_status" class="form-label"
                           >Payment
                             Status</label>
                           <input type="text" class="form-control"
                             id="payment_status" />
                         </div>
-                        <div>
+                        <div class='mb-3'>
                           <label for="payment_mediums" class="form-label"
                           >Payment
                             Mediums</label>
                           <input type="text" class="form-control"
                             id="payment_mediums" />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3 ">
                           <label for="paymentDate">Date
                             Of Payment</label>
                           <input
@@ -1856,7 +1868,7 @@
                     <div class="row">
                       <div class="col-md-6 col-sm-12">
 
-                        <div class="form-group">
+                        <div class="form-group mb-3" >
                           <label>Invoice</label>
                           <div class="input-group">
                             <input
@@ -1867,7 +1879,7 @@
                             <span class="input-group-text">৳</span>
                           </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3" >
                           <label>Total
                             Amount</label>
                           <div class="input-group">
@@ -1879,7 +1891,7 @@
                             <span class="input-group-text">৳</span>
                           </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3" >
                           <label>Amount
                             Paid</label>
                           <div class="input-group">
@@ -1891,7 +1903,7 @@
                             <span class="input-group-text">৳</span>
                           </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3" >
                           <label>Amount
                             Due</label>
                           <div class="input-group">
@@ -1919,7 +1931,7 @@
                           <input type="text" class="form-control"
                             id="payment_mediums" />
                         </div>
-                        <div class="form-group col-md-6 col-sm-12">
+                        <div class="form-group mb-3 col-md-6 col-sm-12">
                           <label for="paymentDate">Date
                             Of Payment</label>
                           <input
@@ -1931,24 +1943,30 @@
                       </div>
                     </div>
                   </div>
-                  <a class="text-decoration-none" href="#topp">
-                    <button
-                      type="button"
-                      class="btn btn-outline-danger my-5"
-                      onclick="prevSection()"
-                    >
-                      Previous
-                    </button>
-                  </a>
-                  <a class="text-decoration-none" href="#topp">
-                    <button
-                      class='btn btn-success'
-                      type='submit'
-                      onclick='submit'
-                    >
-                      Submit
-                    </button>
-                  </a>
+                  <div class="d-flex justify-content-end">
+                    <div>
+                      <a class="text-decoration-none" href="#topp">
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger my-5"
+                          onclick="prevSection()"
+                        >
+                          Previous
+                        </button>
+                      </a>
+                    </div>
+                    <div>
+                      <a class="text-decoration-none" href="#topp">
+                        <button
+                          type="submit"
+                          class="btn btn-outline-primary my-5"
+                          onclick=""
+                        >
+                          Submit
+                        </button>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </section>
             </form>

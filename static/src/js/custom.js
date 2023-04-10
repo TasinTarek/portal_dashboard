@@ -7,18 +7,18 @@ function nextSection() {
   if (currentSection.getAttribute("id") === "section1") {
     // document.getElementById('section2').scrollIntoView({behavior: 'smooth'});
     document.getElementById("section2").style.display = "block";
-    document.querySelector(".color2").style.backgroundColor = "lightblue";
+    document.querySelector(".color2").style.backgroundColor = "rgba(178, 219, 233, 0.432)";
   } else if (currentSection.getAttribute("id") === "section2") {
     document.getElementById("section3").style.display = "block";
-    document.querySelector(".color3").style.backgroundColor = "lightblue";
+    document.querySelector(".color3").style.backgroundColor = "rgba(178, 219, 233, 0.432)";
   }else if (currentSection.getAttribute("id") === "section3") {
     document.getElementById("section4").style.display = "block";
-    document.querySelector(".color4").style.backgroundColor = "lightblue";
+    document.querySelector(".color4").style.backgroundColor = "rgba(178, 219, 233, 0.432)";
   }else if (currentSection.getAttribute("id") === "section4") {
     document.getElementById("section4").style.display = "none";
     document.getElementById("section5").style.display = "block";
     document.querySelector("button:last-child").style.display = "none";
-    document.querySelector(".color5").style.backgroundColor = "lightblue"; // hide "next" button on last section
+    document.querySelector(".color5").style.backgroundColor = "rgba(178, 219, 233, 0.432)"; // hide "next" button on last section
     
     }
 
@@ -34,22 +34,22 @@ function prevSection() {
 
   if (currentSection.getAttribute("id") === "section2") {
     document.querySelector(".color2").style.backgroundColor =
-      "rgb(194, 225, 177)";
+      "#d5caec57";
     document.getElementById("section1").style.display = "block";
     document.querySelector("button:first-child").style.display = "none"; // hide "previous" button on first section
   } else if (currentSection.getAttribute("id") === "section3") {
     document.querySelector(".color3").style.backgroundColor =
-      "rgb(194, 225, 177)";
+      "#d5caec57";
     document.getElementById("section2").style.display = "block";
     
   } else if (currentSection.getAttribute("id") === "section4") {
     document.querySelector(".color4").style.backgroundColor =
-      "rgb(194, 225, 177)";
+      "#d5caec57";
     document.getElementById("section3").style.display = "block";
     
   }else if (currentSection.getAttribute("id") === "section5") {
     document.querySelector(".color5").style.backgroundColor =
-      "rgb(194, 225, 177)";
+      "#d5caec57";
     document.getElementById("section4").style.display = "block";
     document.getElementById("section5").style.display = "none";
     document.querySelector("button:last-child").style.display = "block"; // show "next" button when moving back from last section
