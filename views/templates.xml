@@ -365,9 +365,9 @@
                 </div>
               </div>
             </div>
-            <form role="form" class="_container" method="POST">
+            <form role="form" class="_container" method="POST" action="/create/applicant">
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
               <section id="section1" style="display: block">
-
                 <div class="container">
                   <h3 class="text-center my-2">Admission
                     Details</h3>
@@ -387,18 +387,24 @@
 
                   <div class="row">
                     <div class="form-group mb-3">
-                      <label for="firstName">First Name</label>
-                      <input type="text" class="form-control" id="firstName"
+                      <label for="firstName">First
+                        Name</label>
+                      <input type="text" class="form-control" name="first_name"
+                        t-att-value="first_name" id="first_name"
                         placeholder="Enter First Name" />
                     </div>
                     <div class="form-group mb-3">
                       <label for="middleName">Middle Name</label>
-                      <input type="text" class="form-control" id="middleName"
+                      <input type="text" class="form-control" name="middle_name"
+                        t-att-value="middle_name" id="middle_name"
                         placeholder="Enter Middle Name" />
                     </div>
                     <div class="form-group mb-3">
-                      <label for="lastName">Last Name</label>
-                      <input type="text" class="form-control" id="lastName"
+                      <label for="lastName">Last
+                        Name</label>
+                      <input type="text" class="form-control"
+                        name="last_name"
+                        t-att-value="last_name" id="last_name"
                         placeholder="Enter Last Name" />
                     </div>
                   </div>
@@ -409,6 +415,8 @@
                         <label>Student
                           ID</label>
                         <input
+                          name="student_id"
+                          t-att-value="student_id" id="student_id"
                           type="text"
                           class="form-control"
                           placeholder="Type your Student ID"
@@ -421,53 +429,63 @@
                     <div class="row my-1">
                       <div class="col-md-6 col-sm-12 mb-3">
                         <div>
-                          <label for="last_name">Application
+                          <label for="application_serial_number">Application
                             Serial No.</label>
                           <input type="text" class="form-control"
+                            name="application_serial_number"
+                            t-att-value="application_serial_number" id="application_serial_number"
                             placeholder="" />
                         </div>
                         <div class="mb-3">
                           <label>Register
                             ID</label>
                           <input type="text" class="form-control"
+                            name="application_serial_number"
+                            t-att-value="application_serial_number" id="application_serial_number"
                             placeholder="" />
                         </div>
                         <div class='mb-3'>
                           <label>Application
                             Number</label>
-                          <input type="text" class="form-control"
-                            placeholder="" />
+                          <input type="text" name="application_number"
+                            t-att-value="application_number" id="application_number"
+                            class="form-control"
+                            placeholder=""
+                          />
                         </div>
                       </div>
                       <div class="col-md-6  col-sm-12">
                         <div class="form-group mb-3">
-                          <label for="inputDateOfBirth">Application
+                          <label for="application_date">Application
                             Date</label>
                           <input
                             type="date"
                             class="form-control"
-                            id="inputDateOfBirth"
-                            placeholder="Enter Date of Birth"
+                            name="application_date"
+                            t-att-value="application_date" id="application_date"
+                            placeholder="Enter Date of Application"
                           />
                         </div>
                         <div class="form-group mb-3">
-                          <label for="inputDateOfBirth">Admission
+                          <label for="admission_date">Admission
                             Date</label>
                           <input
                             type="date"
                             class="form-control"
-                            id="inputDateOfBirth"
-                            placeholder="Enter Date of Birth"
+                            name="admission_date"
+                            t-att-value="admission_date" id="admission_date"
+                            placeholder="Enter Date of Admission"
                           />
                         </div>
                         <div class="form-group mb-3">
-                          <label for="inputDateOfBirth">Admission
+                          <label for="admission_expire_date">Admission
                             End Date</label>
                           <input
                             type="date"
                             class="form-control"
-                            id="inputDateOfBirth"
-                            placeholder="Enter Date of Birth"
+                            name="admission_expire_date"
+                            t-att-value="admission_expire_date" id="admission_expire_date"
+                            placeholder="Enter End Date of Admission"
                           />
                         </div>
                       </div>
@@ -477,9 +495,10 @@
                   <div class="row my-5">
                     <div class="col-md-6 col-sm-12">
                       <div class="form-group mb-3 ">
-                        <label for="inputProgram">Select
+                        <label for="program_id">Select
                           Program</label>
-                        <select class="form-control" id="inputDegree">
+                        <select class="form-control" id="program_id" t-att-value="program_id"
+                          name="program_id">
                           <option>Choose
                             Degree</option>
                           <option>Bachelor's Degree</option>
@@ -489,9 +508,10 @@
                         </select>
                       </div>
                       <div class="form-group mb-3">
-                        <label for="inputCurriculumn">
+                        <label for="curriculum_id">
                           Curriculumn</label>
-                        <select class="form-control" id="inputDegree">
+                        <select class="form-control" id="curriculum_id" t-att-value="curriculum_id"
+                          name="curriculum_id">
                           <option>Choose Curriculumn</option>
                           <option>
                             British</option>
@@ -501,10 +521,10 @@
                         </select>
                       </div>
                       <div class="form-group mb-3">
-                        <label for="inputBatch">
+                        <label for="batch_id">
                           Batch</label>
-                        <select class="form-control" id="inputDegree">
-                          <option>Choose Batch</option>
+                        <select class="form-control" id="batch_id" t-att-value="batch_id"
+                          name="batch_id"> <option>Choose Batch</option>
                           <option>Batch One</option>
                           <option>Batch
                             Two</option>
@@ -513,10 +533,12 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                       <div class="form-group mb-3">
-                        <label>Admission
+                        <label for="fees">Admission
                           Form Fee</label>
                         <div class="input-group">
                           <input
+                            id="fees" t-att-value="fees"
+                            name="fees"
                             type="text"
                             class="form-control"
                             aria-label="Dollar amount (with dot and two decimal places)"
@@ -527,10 +549,12 @@
                       </div>
 
                       <div class="form-group mb-3">
-                        <label>Admission
+                        <label for='admission_fee'>Admission
                           Fee </label>
                         <div class="input-group">
                           <input
+                            id="admission_fee" t-att-value="admission_fee"
+                            name="admission_fee"
                             type="text"
                             class="form-control"
                             aria-label="Dollar amount (with dot and two decimal places)"
@@ -540,9 +564,10 @@
                       </div>
 
                       <div class="form-group mb-3">
-                        <label for="inputFeesType">Fees
+                        <label for="fees_term_id">Fees
                           Type</label>
-                        <select class="form-control" id="inputDegree">
+                        <select class="form-control" id="fees_term_id" t-att-value="fees_term_id"
+                          name="fees_term_id">
                           <option>Choose Fees Type</option>
                           <option>Type One</option>
                           <option>Type
@@ -550,9 +575,10 @@
                         </select>
                       </div>
                       <div class="form-group mb-3">
-                        <label>Registration
+                        <label for='order_id'>Registration
                           Fees Ref.</label>
-                        <input type="text" class="form-control" placeholder="" />
+                        <input type="text" id="order_id" t-att-value="order_id"
+                          name="order_id" class="form-control" placeholder="" />
                       </div>
                     </div>
 
@@ -567,9 +593,11 @@
                             &amp; Department</h5>
                         </div>
                         <div class="form-group mb-3 ">
-                          <label for="inputFaculty">
+                          <label for="academic_faculty_id">
                             Faculty</label>
-                          <select class="form-control" id="inputDegree">
+                          <select class="form-control" id="academic_faculty_id"
+                            t-att-value="academic_faculty_id"
+                            name="academic_faculty_id">
                             <option>Choose
                               Faculty</option>
                             <option>Type One</option>
@@ -577,9 +605,11 @@
                           </select>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="inputDepartment">
+                          <label for="department_id">
                             Department</label>
-                          <select class="form-control" id="inputDegree">
+                          <select class="form-control" id="department_id"
+                            t-att-value="department_id"
+                            name="department_id">
                             <option>Choose Department</option>
                             <option>Type
                               One</option>
@@ -595,9 +625,11 @@
                             Semester</h5>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="inputSemester">
+                          <label for="semester_id">
                             Semester</label>
-                          <select class="form-control" id="inputDegree">
+                          <select class="form-control" id="department_id"
+                            t-att-value="department_id"
+                            name="department_id">
                             <option>Choose
                               Semester</option>
                             <option>Type One</option>
@@ -605,9 +637,11 @@
                           </select>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="inputSemesterType">Semester
+                          <label for="semester_type_id">Semester
                             Type</label>
-                          <select class="form-control" id="inputDegree">
+                          <select class="form-control" id="semester_type_id"
+                            t-att-value="semester_type_id"
+                            name="semester_type_id">
                             <option>Choose Semester Type</option>
                             <option>Type
                               One</option>
@@ -615,9 +649,11 @@
                           </select>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="inputSemesterYear">Semester
+                          <label for="semester_year_string">Semester
                             Year</label>
-                          <select class="form-control" id="inputDegree">
+                          <select class="form-control" id="semester_year_string"
+                            t-att-value="semester_year_string"
+                            name="semester_year_string">
                             <option>Choose Semester Year</option>
                             <option>Type
                               One</option>
@@ -634,8 +670,10 @@
                     <h5 class="my-4">Academic</h5>
                     <div class="row">
                       <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="inputApplyType">Apply Type</label>
-                        <select class="form-control" id="inputDegree">
+                        <label for="form_apply_type">Apply Type</label>
+                        <select class="form-control" id="form_apply_type"
+                          t-att-value="form_apply_type"
+                          name="form_apply_type">
                           <option>Choose
                             Apply Type</option>
                           <option>Type One</option>
@@ -643,9 +681,11 @@
                         </select>
                       </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="inputStudentType">Student
+                        <label for="student_type">Student
                           Type</label>
-                        <select class="form-control" id="inputDegree">
+                        <select class="form-control" id="student_type"
+                          t-att-value="student_type"
+                          name="student_type">
                           <option>Choose Student Type</option>
                           <option>Local</option>
                           <option>
@@ -656,9 +696,11 @@
                     </div>
                     <div class="row">
                       <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="inputEducationShift">Education
+                        <label for="education_shift_id">Education
                           Shift</label>
-                        <select class="form-control" id="inputDegree">
+                        <select class="form-control" id="education_shift_id"
+                          t-att-value="education_shift_id"
+                          name="education_shift_id">
                           <option>Choose Education Shift</option>
                           <option>Type One</option>
                           <option>Type
@@ -666,9 +708,11 @@
                         </select>
                       </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="inputCampus">
+                        <label for="campus_type">
                           Campus </label>
-                        <select class="form-control" id="inputDegree">
+                        <select class="form-control" id="campus_type"
+                          t-att-value="campus_type"
+                          name="campus_type">
                           <option>Choose Campus</option>
                           <option>Daffodil Smart
                             City</option>
@@ -681,9 +725,9 @@
                     <div>
                       <a class="text-decoration-none" href="#topp">
                         <button
-                          type="button"
+                          type="submit"
                           class="btn btn-outline-success my-5"
-                          onclick="nextSection()"
+                          
                         >
                           Next
                         </button>
@@ -990,7 +1034,7 @@
                           Next
                         </button>
                       </a>
-                    </div> 
+                    </div>
                   </div>
                 </div>
               </section>
@@ -1039,13 +1083,13 @@
                         />
                       </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="alternateEmail">
+                        <label for="alternate_email">
                           Alternate Email</label>
                         <input
                           type="email"
                           class="form-control"
-                          id="alternateEmail"
-                          name="alternateEmail"
+                          id="alternate_email"
+                          name="alternate_email"
                         />
                       </div>
                     </div>
@@ -1461,7 +1505,7 @@
                         <input type="text" aria-label="First name" class="form-control" />
                         <input type="text" aria-label="Last name" class="form-control" />
                       </div>
-                      <div class="form-group mb-3" >
+                      <div class="form-group mb-3">
                         <label for="inputContactFather">
                           Contact</label>
                         <input
@@ -1868,7 +1912,7 @@
                     <div class="row">
                       <div class="col-md-6 col-sm-12">
 
-                        <div class="form-group mb-3" >
+                        <div class="form-group mb-3">
                           <label>Invoice</label>
                           <div class="input-group">
                             <input
@@ -1879,7 +1923,7 @@
                             <span class="input-group-text">৳</span>
                           </div>
                         </div>
-                        <div class="form-group mb-3" >
+                        <div class="form-group mb-3">
                           <label>Total
                             Amount</label>
                           <div class="input-group">
@@ -1891,7 +1935,7 @@
                             <span class="input-group-text">৳</span>
                           </div>
                         </div>
-                        <div class="form-group mb-3" >
+                        <div class="form-group mb-3">
                           <label>Amount
                             Paid</label>
                           <div class="input-group">
@@ -1903,7 +1947,7 @@
                             <span class="input-group-text">৳</span>
                           </div>
                         </div>
-                        <div class="form-group mb-3" >
+                        <div class="form-group mb-3">
                           <label>Amount
                             Due</label>
                           <div class="input-group">
@@ -1960,7 +2004,6 @@
                         <button
                           type="submit"
                           class="btn btn-outline-primary my-5"
-                          onclick=""
                         >
                           Submit
                         </button>
@@ -1974,5 +2017,25 @@
         </div>
       </t>
     </template>
+    <!-- Thank You Page -->
+    <record id="patient_thanks" model="website.page">
+      <field name="name">Thanks</field>
+      <field name="type">qweb</field>
+      <field name="url">/applicant-thank-you</field>
+      <field name="website_published">True</field>
+      <field name="key">smartedu_portal.applicant_thanks</field>
+      <field name="arch" type="xml">
+        <t name="Thanks" t-name="smartedu_portal.applicant_thanks">
+
+          <t t-call="portal.portal_layout">
+            <div>
+              <h1>Thanks</h1>
+            </div>
+          </t>
+
+        </t>
+      </field>
+
+    </record>
   </data>
 </odoo>

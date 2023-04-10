@@ -30,3 +30,11 @@ class MyApplicationController(http.Controller):
         return request.render("smartedu_portal.se_student_application_list", {
             'informations': applicant_info,
         })
+
+# Sending Data From Portal to Backend
+
+class MyApplicationSendingController(http.Controller):
+    @http.route('/create/applicant', type='http', auth='user', website=True)
+    def create_applicant(self, **kw):
+        request.env['se.application'].sudo().create(kw)
+        return request.render("smartedu_portal.applicant_thanks")
