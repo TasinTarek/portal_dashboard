@@ -7,6 +7,10 @@ class MyPortalController(http.Controller):
 
     @http.route('/my/admission/online/applications/student', type='http', auth='user', website=True)
     def my_student_route(self, **kw):
+        
+        user_id = request.env.context.get('uid')
+        kw.update({"user_id": user_id})
+        
         information = http.request.env['se.student'].search([])
         return request.render("smartedu_portal.se_student_template", {
             'info': information,
@@ -36,5 +40,13 @@ class MyApplicationController(http.Controller):
 class MyApplicationSendingController(http.Controller):
     @http.route('/create/applicant', type='http', auth='user', website=True)
     def create_applicant(self, **kw):
-        request.env['se.application'].sudo().create(kw)
-        return request.render("smartedu_portal.applicant_thanks")
+        
+        first_name = kw.get('first_name')
+        middle_name = kw.get('middle_name')
+        last_name = kw.get('last_name')
+        request.env['se.application'].sudo().create({
+            'first_name': first_name,
+            'middle_name': middle_name,
+            'last_name': last_name
+        })
+        return request.render("smartedu_portal.applicant_thanks", {})
