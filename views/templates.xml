@@ -233,8 +233,11 @@
                 </td> 
                 <td>
                   <a href="/my/admission/online/applications/list/form"
-                    class="btn btn-secondary btn-sm" role="button" aria-disabled="true">
+                    class="btn btn-secondary btn-sm" role="button" aria-disabled="true" name="view">
                     View</a>
+                    <a href="/my/admission/online/applications/list/form"
+                    class="btn btn-secondary btn-sm" name="update" role="button" aria-disabled="true">
+                    Update</a>
                 </td>
               </tr>
             </tbody>
@@ -365,363 +368,371 @@
                 </div>
               </div>
             </div>
-            <form role="form" class="_container" method="POST" action="/create/applicant">
+            <form role="form" class="_container" method="post"
+              action="/my/admission/online/applications/list/form">
               <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+              <input type="hidden" name="student_id" value="{{ student_info.id }}" />
+              <t t-foreach="student_info" t-as="student_info">
               <section id="section1" style="display: block">
                 <div class="container">
                   <h3 class="text-center my-2">Admission
-                    Details</h3>
+                      Details</h3>
                   <div class="form-check col ">
                     <div class="p-4">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
-                      />
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="is_student"
+                          id="is_student"
+                        />
                       <label class="form-check-label" for="flexRadioDefault1">
-                        Is Alumni ?
-                      </label>
+                          Is Alumni ?
+                        </label>
+                      </div>
                     </div>
-                  </div>
-
                   <div class="row">
                     <div class="form-group mb-3">
                       <label for="firstName">First
-                        Name</label>
-                      <input type="text" class="form-control" name="first_name"
-                        t-att-value="first_name" id="first_name"
-                        placeholder="Enter First Name" />
-                    </div>
+                          Name</label>
+                        <input type="text" class="form-control" name="first_name"
+                          t-att-value="student_info.first_name" id="first_name"
+                          placeholder="Enter First Name" />
+                      </div>
                     <div class="form-group mb-3">
                       <label for="middleName">Middle Name</label>
-                      <input type="text" class="form-control" name="middle_name"
-                        t-att-value="middle_name" id="middle_name"
-                        placeholder="Enter Middle Name" />
-                    </div>
+                        <input type="text" class="form-control" name="middle_name"
+                          t-esc="student_info.middle_name"
+                          t-att-value="student_info.middle_name" id="middle_name"
+                          placeholder="Enter Middle Name" />
+                      </div>
                     <div class="form-group mb-3">
                       <label for="lastName">Last
-                        Name</label>
-                      <input type="text" class="form-control"
-                        name="last_name"
-                        t-att-value="last_name" id="last_name"
-                        placeholder="Enter Last Name" />
+                          Name</label>
+                        <input type="text" class="form-control"
+                          name="last_name"
+                          t-att-value="student_info.last_name" id="last_name"
+                          placeholder="Enter Last Name" />
+                      </div>
                     </div>
-                  </div>
                   <div>
                     <div class="row ">
                       <div class="col my-1 mb-3">
 
                         <label>Student
-                          ID</label>
-                        <input
-                          name="student_id"
-                          t-att-value="student_id" id="student_id"
-                          type="text"
-                          class="form-control"
-                          placeholder="Type your Student ID"
-                        />
+                            ID</label>
+                          <input
+                            name="student_id"
+                            t-att-value="student_info.student_id" id="student_id"
+                            type="text"
+                            class="form-control"
+                            placeholder="Type your Student ID"
+                          />
+
+                        </div>
+
 
                       </div>
-
-
-                    </div>
                     <div class="row my-1">
                       <div class="col-md-6 col-sm-12 mb-3">
                         <div>
                           <label for="application_serial_number">Application
-                            Serial No.</label>
-                          <input type="text" class="form-control"
-                            name="application_serial_number"
-                            t-att-value="application_serial_number" id="application_serial_number"
-                            placeholder="" />
-                        </div>
+                              Serial No.</label>
+                            <input type="text" class="form-control"
+                              name="application_serial_number"
+                              t-att-value="student_info.application_serial_number" id="application_serial_number"
+                              placeholder="" />
+                          </div>
                         <div class="mb-3">
                           <label>Register
-                            ID</label>
-                          <input type="text" class="form-control"
-                            name="application_serial_number"
-                            t-att-value="application_serial_number" id="application_serial_number"
-                            placeholder="" />
-                        </div>
+                              ID</label>
+                            <input type="text" class="form-control"
+                              name="application_serial_number"
+                              t-att-value="student_info.application_serial_number" id="application_serial_number"
+                              placeholder="" />
+                          </div>
                         <div class='mb-3'>
                           <label>Application
-                            Number</label>
-                          <input type="text" name="application_number"
-                            t-att-value="application_number" id="application_number"
-                            class="form-control"
-                            placeholder=""
-                          />
+                              Number</label>
+                            <input type="text" name="application_number"
+                              t-att-value="student_info.application_number" id="application_number"
+                              class="form-control"
+                              placeholder=""
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <!-- <div class="col-md-6  col-sm-12">
+                      <div class="col-md-6  col-sm-12">
                         <div class="form-group mb-3">
                           <label for="application_date">Application
-                            Date</label>
-                          <input
-                            type="date"
-                            class="form-control"
-                            name="application_date"
-                            t-att-value="application_date" id="application_date"
-                            placeholder="Enter Date of Application"
-                          />
-                        </div>
+                              Date</label>
+                            <input
+                              type="date"
+                              class="form-control"
+                              name="application_date"
+                              t-att-value="student_info.application_date" id="application_date"
+                              placeholder="Enter Date of Application"
+                            />
+                          </div>
                         <div class="form-group mb-3">
                           <label for="admission_date">Admission
-                            Date</label>
-                          <input
-                            type="date"
-                            class="form-control"
-                            name="admission_date"
-                            t-att-value="admission_date" id="admission_date"
-                            placeholder="Enter Date of Admission"
-                          />
-                        </div>
+                              Date</label>
+                            <input
+                              type="date"
+                              class="form-control"
+                              name="admission_date"
+                              t-att-value="student_info.admission_date" id="admission_date"
+                              placeholder="Enter Date of Admission"
+                            />
+                          </div>
                         <div class="form-group mb-3">
                           <label for="admission_expire_date">Admission
-                            End Date</label>
-                          <input
-                            type="date"
-                            class="form-control"
-                            name="admission_expire_date"
-                            t-att-value="admission_expire_date" id="admission_expire_date"
-                            placeholder="Enter End Date of Admission"
-                          />
+                              End Date</label>
+                            <input
+                              type="date"
+                              class="form-control"
+                              name="admission_expire_date"
+                              t-att-value="student_info.admission_expire_date" id="admission_expire_date"
+                              placeholder="Enter End Date of Admission"
+                            />
+                          </div>
                         </div>
-                      </div> -->
-                    </div>
+                      </div>
 
-                  </div>
+                    </div>
                   <div class="row my-5">
                     <div class="col-md-6 col-sm-12">
-                      <div class="form-group mb-3 ">
+                        <!-- <div class="form-group mb-3 ">
                         <label for="form_type">Select
-                          Program</label>
-                        <select class="form-control" id="form_type" t-att-value="form_type"
-                          name="form_type">
-                          <option>Choose
-                            Degree</option>
-                          <option value="local_bachelor_program_hsc">Bachelor's Degree</option>
-                          <option value="local_masters_program_bachelor">Master's
-                            Degree</option>
-                          <option value="international_masters_program">PhD</option>
-                        </select>
-                      </div>
-                      <!-- <div class="form-group mb-3">
+                            Program</label>
+                          <select class="form-control" id="form_type" name="form_type"
+                            t-att-value="student_info.form_type">
+                            <option value="">Choose Degree</option>
+                            <option value="local_bachelor_program_hsc"
+                              t-att-selected="student_info.form_type === 'local_bachelor_program_hsc'">Bachelor's
+                              Degree</option>
+                            <option value="local_masters_program_bachelor"
+                              t-att-selected="student_info.form_type === 'local_masters_program_bachelor'">Master's
+                              Degree</option>
+                            <option value="international_masters_program"
+                              t-att-selected="student_info.form_type === 'international_masters_program'">
+                              PhD</option>
+                          </select>
+
+                        </div> -->
+                        <!-- <div class="form-group mb-3">
                         <label for="curriculum_id">
-                          Curriculumn</label>
-                        <select class="form-control" id="curriculum_id" t-att-value="curriculum_id"
-                          name="curriculum_id">
-                          <option>Choose Curriculumn</option>
-                          <option>
-                            British</option>
-                          <option>
-                            National</option>
-                          <option>PhD</option>
-                        </select>
-                      </div> -->
-                      <!-- <div class="form-group mb-3">
+                            Curriculumn</label>
+                          <select class="form-control" id="curriculum_id" name="curriculum_id"
+                            t-att-value="student_info.curriculum_id">
+                            <option value="">Choose Curriculum</option>
+                            <option value="british"
+                              t-att-selected="student_info.curriculum_id === 'british'">British</option>
+                            <option value="national"
+                              t-att-selected="student_info.curriculum_id === 'national'">National</option>
+                            <option value="phd"
+                              t-att-selected="student_info.curriculum_id === 'phd'">
+                              PhD</option>
+                          </select>
+
+                        </div> -->
+                      <div class="form-group mb-3">
                         <label for="batch_id">
-                          Batch</label>
-                        <select class="form-control" id="batch_id" t-att-value="batch_id"
+                            Batch</label>
+                        <select class="form-control" id="batch_id" t-att-value="student_info.batch_id"
                           name="batch_id">
                           <option>Choose Batch</option>
                           <option>Batch One</option>
                           <option>Batch
-                            Two</option>
-                        </select>
-                      </div> -->
-                    </div>
+                              Two</option>
+                          </select>
+                        </div>
+                      </div>
                     <div class="col-md-6 col-sm-12">
                       <div class="form-group mb-3">
                         <label for="fees">Admission
-                          Form Fee</label>
+                            Form Fee</label>
                         <div class="input-group">
-                          <input
-                            id="fees" t-att-value="fees"
-                            name="fees"
-                            type="text"
-                            class="form-control"
-                            aria-label="Dollar amount (with dot and two decimal places)"
-                          />
+                            <input
+                              id="fees" t-att-value="student_info.fees"
+                              name="fees"
+                              type="text"
+                              class="form-control"
+                              aria-label="Dollar amount (with dot and two decimal places)"
+                            />
                           <span class="input-group-text">৳</span>
 
+                          </div>
                         </div>
-                      </div>
 
                       <div class="form-group mb-3">
                         <label for='admission_fee'>Admission
-                          Fee </label>
+                            Fee </label>
                         <div class="input-group">
-                          <input
-                            id="admission_fee" t-att-value="admission_fee"
-                            name="admission_fee"
-                            type="text"
-                            class="form-control"
-                            aria-label="Dollar amount (with dot and two decimal places)"
-                          />
+                            <input
+                              id="admission_fee" t-att-value="student_info.admission_fee"
+                              name="admission_fee"
+                              type="text"
+                              class="form-control"
+                              aria-label="Dollar amount (with dot and two decimal places)"
+                            />
                           <span class="input-group-text">৳</span>
+                          </div>
                         </div>
-                      </div>
 
-                      <!-- <div class="form-group mb-3">
+                      <div class="form-group mb-3">
                         <label for="fees_term_id">Fees
-                          Type</label>
-                        <select class="form-control" id="fees_term_id" t-att-value="fees_term_id"
+                            Type</label>
+                        <select class="form-control" id="fees_term_id" t-att-value="student_info.fees_term_id"
                           name="fees_term_id">
                           <option>Choose Fees Type</option>
                           <option>Type One</option>
                           <option>Type
-                            Two</option>
-                        </select>
-                      </div> -->
+                              Two</option>
+                          </select>
+                        </div>
                       <div class="form-group mb-3">
                         <label for='order_id'>Registration
-                          Fees Ref.</label>
-                        <input type="text" id="order_id" t-att-value="order_id"
-                          name="order_id" class="form-control" placeholder="" />
+                            Fees Ref.</label>
+                          <input type="text" id="order_id" t-att-value="student_info.order_id"
+                            name="order_id" class="form-control" placeholder="" />
+                        </div>
                       </div>
-                    </div>
 
-                  </div>
+                    </div>
                   <div>
 
                     <div class="row ">
-                      <!-- <h5>Faculty &amp; Department</h5> -->
                       <div class="col-md-6 col-sm-12">
                         <div>
                           <h5>Faculty
-                            &amp; Department</h5>
-                        </div>
-                        <!-- <div class="form-group mb-3 ">
+                              &amp; Department</h5>
+                          </div>
+                        <div class="form-group mb-3 ">
                           <label for="academic_faculty_id">
-                            Faculty</label>
+                              Faculty</label>
                           <select class="form-control" id="academic_faculty_id"
-                            t-att-value="academic_faculty_id"
+                            t-att-value="student_info.academic_faculty_id"
                             name="academic_faculty_id">
                             <option>Choose
-                              Faculty</option>
+                                Faculty</option>
                             <option>Type One</option>
                             <option>Type Two</option>
-                          </select>
-                        </div>
+                            </select>
+                          </div>
                         <div class="form-group mb-3">
                           <label for="department_id">
-                            Department</label>
+                              Department</label>
                           <select class="form-control" id="department_id"
-                            t-att-value="department_id"
+                            t-att-value="student_info.department_id"
                             name="department_id">
                             <option>Choose Department</option>
                             <option>Type
-                              One</option>
+                                One</option>
                             <option>Type Two</option>
-                          </select>
-                        </div> -->
-                      </div>
-                      <!-- <h5>
-                                            Semester</h5> -->
-                      <!-- <div class="col-md-6 col-sm-12">
+                            </select>
+                          </div>
+                        </div>
+                      <div class="col-md-6 col-sm-12">
                         <div>
                           <h5>
-                            Semester</h5>
-                        </div>
+                              Semester</h5>
+                          </div>
                         <div class="form-group mb-3">
                           <label for="semester_id">
-                            Semester</label>
+                              Semester</label>
                           <select class="form-control" id="department_id"
-                            t-att-value="department_id"
+                            t-att-value="student_info.department_id"
                             name="department_id">
                             <option>Choose
-                              Semester</option>
+                                Semester</option>
                             <option>Type One</option>
                             <option>Type Two</option>
-                          </select>
-                        </div>
+                            </select>
+                          </div>
                         <div class="form-group mb-3">
                           <label for="semester_type_id">Semester
-                            Type</label>
+                              Type</label>
                           <select class="form-control" id="semester_type_id"
-                            t-att-value="semester_type_id"
+                            t-att-value="student_info.semester_type_id"
                             name="semester_type_id">
                             <option>Choose Semester Type</option>
                             <option>Type
-                              One</option>
+                                One</option>
                             <option>Type Two</option>
-                          </select>
-                        </div>
+                            </select>
+                          </div>
                         <div class="form-group mb-3">
                           <label for="semester_year_string">Semester
-                            Year</label>
+                              Year</label>
                           <select class="form-control" id="semester_year_string"
-                            t-att-value="semester_year_string"
+                            t-att-value="student_info.semester_year_string"
                             name="semester_year_string">
                             <option>Choose Semester Year</option>
                             <option>Type
-                              One</option>
+                                One</option>
                             <option>Type Two</option>
-                          </select>
+                            </select>
+                          </div>
                         </div>
-                      </div> -->
 
+                      </div>
                     </div>
-                  </div>
                   <div>
-                  </div>
+                    </div>
                   <div>
                     <h5 class="my-4">Academic</h5>
                     <div class="row">
                       <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="form_apply_type">Apply Type</label>
                         <select class="form-control" id="form_apply_type"
-                          t-att-value="form_apply_type"
+                          t-att-value="student_info.form_apply_type"
                           name="form_apply_type">
                           <option>Choose
-                            Apply Type</option>
+                              Apply Type</option>
                           <option value="offline">Offline</option>
                           <option value="online">Online</option>
-                        </select>
-                      </div>
+                          </select>
+                        </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="student_type">Student
-                          Type</label>
+                            Type</label>
                         <select class="form-control" id="student_type"
-                          t-att-value="student_type"
+                          t-att-value="student_info.student_type"
                           name="student_type">
                           <option>Choose Student Type</option>
                           <option value="local">Local</option>
                           <option value="international">
-                            International</option>
-                        </select>
-                      </div>
+                              International</option>
+                          </select>
+                        </div>
 
-                    </div>
+                      </div>
                     <div class="row">
-                      <!-- <div class="form-group mb-3 col-md-6 col-sm-12">
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="education_shift_id">Education
-                          Shift</label>
+                            Shift</label>
                         <select class="form-control" id="education_shift_id"
-                          t-att-value="education_shift_id"
+                          t-att-value="student_info.education_shift_id"
                           name="education_shift_id">
                           <option>Choose Education Shift</option>
                           <option>Type One</option>
                           <option>Type
-                            Two</option>
-                        </select>
-                      </div> -->
+                              Two</option>
+                          </select>
+                        </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="campus_type">
-                          Campus </label>
+                            Campus </label>
                         <select class="form-control" id="campus_type"
-                          t-att-value="campus_type"
+                          t-att-value="student_info.campus_type"
                           name="campus_type">
                           <option>Choose Campus</option>
                           <option value="on_campus">On Campus
                             </option>
                           <option value="off_campus">Off Campus</option>
-                        </select>
+                          </select>
+                        </div>
                       </div>
                     </div>
-                  </div>
                   <div class="d-flex justify-content-end">
                     <div>
                       <a class="text-decoration-none" href="#topp">
@@ -730,19 +741,19 @@
                           class="btn btn-outline-success my-5"
                           onclick="nextSection()"
                         >
-                          Next
-                        </button>
-                      </a>
+                            Next
+                          </button>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-              </section>
-              <!-- Educational Details Section 2 -->
+                </section>
+                <!-- Educational Details Section 2 -->
               <section id="section2">
                 <div class="container">
                   <h3 class="my-2 text-center">Education
-                    Details</h3>
+                      Details</h3>
 
                   <div class="row">
                     <div class="col-md-6">
@@ -750,169 +761,173 @@
                       <div class="form-row ">
                         <div class="form-group mb-3 col">
                           <label for="registration_number_ssc">Registration
-                            Number</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="registration_number_ssc"
-                            t-att-value="registration_number_ssc"
-                            name="registration_number_ssc"
-                            placeholder="Enter Registration Number"
-                          />
-                        </div>
+                              Number</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="registration_number_ssc"
+                              t-att-value="student_info.registration_number_ssc"
+                              name="registration_number_ssc"
+                              placeholder="Enter Registration Number"
+                            />
+                          </div>
                         <div class="form-group mb-3 col">
                           <label for="roll_number_ssc">Roll
-                            Number</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="roll_number_ssc"
-                            t-att-value="roll_number_ssc"
-                            name="roll_number_ssc"
-                            placeholder="Enter Roll Number"
-                          />
-                        </div>
+                              Number</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="roll_number_ssc"
+                              t-att-value="student_info.roll_number_ssc"
+                              name="roll_number_ssc"
+                              placeholder="Enter Roll Number"
+                            />
+                          </div>
                         <div class="form-group mb-3 col">
-                          <label for="education_board_ssc_id">Education Board</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="education_board_ssc_id"
-                            placeholder="Enter Education Board"
-                          />
-                        </div>
+                          <label for="education_board_ssc_id">Education
+                              Board</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="education_board_ssc_id"
+                              placeholder="Enter Education Board"
+                            />
+                          </div>
                         <div class="form-group mb-3 col">
                           <label for="year_ssc">Year
-                            of
-                            Completion</label>
+                              of
+                              Completion</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="year_ssc"
+                              t-att-value="student_info.year_ssc"
+                              name="year_ssc"
+                              placeholder="Enter Year of Completion"
+                            />
+                          </div>
+                        </div>
+                      <div class="form-group mb-3 col">
+                        <label for="ssc_gpa">
+                            Result</label>
                           <input
-                            type="number"
+                            type="text"
                             class="form-control"
-                            id="year_ssc"
-                            t-att-value="year_ssc"
-                            name="year_ssc"
-                            placeholder="Enter Year of Completion"
+                            id="ssc_gpa"
+                            t-att-value="student_info.ssc_gpa"
+                            name="ssc_gpa"
+                            placeholder="Enter Field of Study"
                           />
                         </div>
-                      </div>
-                      <div class="form-group mb-3 col">
-                        <label for="ssc_gpa">Result</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="ssc_gpa"
-                          t-att-value="ssc_gpa"
-                          name="ssc_gpa"
-                          placeholder="Enter Field of Study"
-                        />
-                      </div>
 
                       <div class="form-group mb-3">
                         <label for="ssc_certificate">
-                          Certificate</label>
+                            Certificate</label>
                         <textarea
                           class="form-control"
                           id="ssc_certificate"
-                          t-att-value="ssc_certificate"
+                          t-att-value="student_info.ssc_certificate"
                           name="ssc_certificate"
                           rows="3"
                         ></textarea>
+                        </div>
                       </div>
-                    </div>
                     <div class="col-md-6">
                       <h5 class="my-4">Higher-Secondary
-                        School Certificate (HSC)</h5>
+                          School Certificate (HSC)</h5>
                       <div class="form-row ">
                         <div class="form-group mb-3 col">
                           <label for="registration_number_hsc">Registration
-                            Number</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="registration_number_hsc"
-                            t-att-value="registration_number_hsc"
-                            name="registration_number_hsc"
-                            placeholder="Enter Registration Number"
-                          />
-                        </div>
+                              Number</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="registration_number_hsc"
+                              t-att-value="student_info.registration_number_hsc"
+                              name="registration_number_hsc"
+                              placeholder="Enter Registration Number"
+                            />
+                          </div>
                         <div class="form-group mb-3 col">
                           <label for="roll_number_hsc">Roll
-                            Number</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="roll_number_hsc"
-                            t-att-value="roll_number_hsc"
-                            name="roll_number_hsc"
-                            placeholder="Enter Roll Number"
-                          />
-                        </div>
+                              Number</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="roll_number_hsc"
+                              t-att-value="student_info.roll_number_hsc"
+                              name="roll_number_hsc"
+                              placeholder="Enter Roll Number"
+                            />
+                          </div>
                         <div class="form-group mb-3 col">
-                          <label for="education_board_hsc_id">Education Board</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="education_board_hsc_id"
-                            t-att-value="education_board_hsc_id"
-                            name="education_board_hsc_id"
-                            placeholder="Enter Institution Name"
-                          />
-                        </div>
+                          <label for="education_board_hsc_id">Education
+                              Board</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="education_board_hsc_id"
+                              t-att-value="student_info.education_board_hsc_id"
+                              name="education_board_hsc_id"
+                              placeholder="Enter Institution Name"
+                            />
+                          </div>
                         <div class="form-group mb-3 col">
                           <label for="year_hsc">Year
-                            of
-                            Completion</label>
+                              of
+                              Completion</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="year_hsc"
+                              t-att-value="student_info.year_hsc"
+                              name="year_hsc"
+                              placeholder="Enter Year of Completion"
+                            />
+                          </div>
+                        </div>
+                      <div class="form-group mb-3 col">
+                        <label for="hsc_gpa">
+                            Result</label>
                           <input
-                            type="number"
+                            type="text"
                             class="form-control"
-                            id="year_hsc"
-                            t-att-value="year_hsc"
-                            name="year_hsc"
-                            placeholder="Enter Year of Completion"
+                            id="hsc_gpa"
+                            t-att-value="student_info.hsc_gpa"
+                            name="hsc_gpa"
+                            placeholder="Enter Field of Study"
                           />
                         </div>
-                      </div>
-                      <div class="form-group mb-3 col">
-                        <label for="hsc_gpa">Result</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="hsc_gpa"
-                          t-att-value="hsc_gpa"
-                          name="hsc_gpa"
-                          placeholder="Enter Field of Study"
-                        />
-                      </div>
 
                       <div class="form-group mb-3">
                         <label for="hsc_certificate">
-                          Certificate</label>
+                            Certificate</label>
                         <textarea
                           class="form-control"
                           id="hsc_certificate"
                           name="hsc_certificate"
                           rows="3"
                         ></textarea>
+                        </div>
                       </div>
                     </div>
-                  </div>
                   <div class="row ">
                     <div class="col-md-6">
                       <h5 class="my-4">
-                        O-Level</h5>
+                          O-Level</h5>
                       <div class="form-row ">
                         <div class="form-group mb-3 col">
                           <label for="education_board_o_level_id">Registration Number</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="education_board_o_level_id"
-                            t-att-value="education_board_o_level_id"
-                            name="education_board_o_level_id"
-                            placeholder="Enter Registration Number"
-                          />
-                        </div>
-                        <!-- <div class="form-group mb-3 col">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="education_board_o_level_id"
+                              t-att-value="student_info.education_board_o_level_id"
+                              name="education_board_o_level_id"
+                              placeholder="Enter Registration Number"
+                            />
+                          </div>
+                          <!-- <div class="form-group mb-3 col">
                           <label for="inputRoll">Roll
                             Number</label>
                           <input
@@ -922,69 +937,71 @@
                             placeholder="Enter Roll Number"
                           />
                         </div> -->
+                          <!-- <div class="form-group mb-3 col">
+                          <label for="admission_board_result_o_level_ids">
+                              Result</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="admission_board_result_o_level_ids"
+                              t-att-value="student_info.education_board_o_level_ids"
+                              name="education_board_o_level_id"
+                              placeholder="Enter Institution Name"
+                            />
+                          </div> -->
                         <div class="form-group mb-3 col">
-                          <label for="admission_board_result_o_level_ids">Result</label>
+                          <label for="passing_year_o_level">Year
+                              of
+                              Completion</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="passing_year_o_level"
+                              t-att-value="student_info.passing_year_o_level"
+                              name="passing_year_o_level"
+                              placeholder="Enter Year of Completion"
+                            />
+                          </div>
+                        </div>
+                      <div class="form-group mb-3 col">
+                        <label for="admission_board_result_o_level_ids">Admission
+                            Board</label>
                           <input
                             type="text"
                             class="form-control"
                             id="admission_board_result_o_level_ids"
-                            t-att-value="education_board_o_level_ids"
-                            name="education_board_o_level_id"
-                            placeholder="Enter Institution Name"
+                            t-att-value="student_info.admission_board_result_o_level_ids"
+                            name="admission_board_result_o_level_ids"
+                            placeholder="Enter Field of Study"
                           />
                         </div>
-                        <div class="form-group mb-3 col">
-                          <label for="passing_year_o_level">Year
-                            of
-                            Completion</label>
-                          <input
-                            type="number"
-                            class="form-control"
-                            id="passing_year_o_level"
-                            t-att-value="passing_year_o_level"
-                            name="passing_year_o_level"
-                            placeholder="Enter Year of Completion"
-                          />
-                        </div>
-                      </div>
-                      <div class="form-group mb-3 col">
-                        <label for="admission_board_result_o_level_ids">Admission Board</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="admission_board_result_o_level_ids"
-                          t-att-value="admission_board_result_o_level_ids"
-                          name="admission_board_result_o_level_ids"
-                          placeholder="Enter Field of Study"
-                        />
-                      </div>
 
-                      <!-- <div class="form-group mb-3">
+                      <div class="form-group mb-3">
                         <label for="inputAchievements">
-                          Achievements</label>
+                            Achievements</label>
                         <textarea
                           class="form-control"
                           id="inputAchievements"
                           rows="3"
                         ></textarea>
-                      </div> -->
-                    </div>
+                        </div>
+                      </div>
                     <div class="col-md-6">
                       <h5 class="my-4">
-                        A-Level</h5>
+                          A-Level</h5>
                       <div class="form-row ">
-                        <!-- <div class="form-group mb-3 col">
+                        <div class="form-group mb-3 col">
                           <label for="education_board_a_level_id">Registration Number</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="education_board_a_level_id"
-                            t-att-value="education_board_a_level_id"
-                            name="education_board_a_level_id"
-                            placeholder="Enter Registration Number"
-                          />
-                        </div> -->
-                        <!-- <div class="form-group mb-3 col">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="education_board_a_level_id"
+                              t-att-value="student_info.education_board_a_level_id"
+                              name="education_board_a_level_id"
+                              placeholder="Enter Registration Number"
+                            />
+                          </div>
+                          <!-- <div class="form-group mb-3 col">
                           <label for="inputRoll">Roll
                             Number</label>
                           <input
@@ -995,56 +1012,58 @@
                           />
                         </div> -->
                         <div class="form-group mb-3 col">
-                          <label for="education_board_a_level_id">Admiossion Board</label>
+                          <label for="education_board_a_level_id">Admiossion
+                              Board</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="education_board_a_level_id"
+                              name="education_board_a_level_id"
+                              t-att-value="student_info.education_board_a_level_id"
+                              placeholder="Enter Institution Name"
+                            />
+                          </div>
+                        <div class="form-group mb-3 col">
+                          <label for="passing_year_a_level">Year
+                              of
+                              Completion</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="passing_year_a_level"
+                              t-att-value="student_info.passing_year_a_level"
+                              name="passing_year_a_level"
+                              placeholder="Enter Year of Completion"
+                            />
+                          </div>
+                        </div>
+                      <div class="form-group mb-3 col">
+                        <label for="admission_board_result_a_level_ids">
+                            Result</label>
                           <input
                             type="text"
                             class="form-control"
-                            id="education_board_a_level_id"
-                            name="education_board_a_level_id"
-                            t-att-value="education_board_a_level_id"
-                            placeholder="Enter Institution Name"
+                            id="admission_board_result_a_level_ids"
+                            t-att-value="student_info.admission_board_result_a_level_ids"
+                            name="admission_board_result_a_level_ids"
+                            placeholder="Enter Field of Study"
                           />
                         </div>
-                        <div class="form-group mb-3 col">
-                          <label for="passing_year_a_level">Year
-                            of
-                            Completion</label>
-                          <input
-                            type="number"
-                            class="form-control"
-                            id="passing_year_a_level"
-                            t-att-value="passing_year_a_level"
-                            name="passing_year_a_level"
-                            placeholder="Enter Year of Completion"
-                          />
-                        </div>
-                      </div>
-                      <div class="form-group mb-3 col">
-                        <label for="admission_board_result_a_level_ids">Result</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="admission_board_result_a_level_ids"
-                          t-att-value="admission_board_result_a_level_ids"
-                          name="admission_board_result_a_level_ids"
-                          placeholder="Enter Field of Study"
-                        />
-                      </div>
 
                       <div class="form-group mb-3">
                         <label for="admission_achievement_ids">
-                          Achievements</label>
+                            Achievements</label>
                         <textarea
                           class="form-control"
                           id="admission_achievement_ids"
-                          t-att-value="admission_achievement_ids"
+                          t-att-value="student_info.admission_achievement_ids"
                           name="admission_achievement_ids"
                           rows="3"
                         ></textarea>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <!-- class="d-flex justify-content-end" -->
+                    <!-- class="d-flex justify-content-end" -->
                   <div class="d-flex justify-content-end">
                     <div>
                       <a class="text-decoration-none" href="#topp">
@@ -1053,10 +1072,10 @@
                           class="btn btn-outline-danger my-5"
                           onclick="prevSection()"
                         >
-                          Previous
-                        </button>
-                      </a>
-                    </div>
+                            Previous
+                          </button>
+                        </a>
+                      </div>
                     <div>
                       <a class="text-decoration-none" href="#topp">
                         <button
@@ -1064,495 +1083,495 @@
                           class="btn btn-outline-success my-5"
                           onclick="nextSection()"
                         >
-                          Next
-                        </button>
-                      </a>
+                            Next
+                          </button>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </section>
-              <!-- Personal Details Section 3 -->
+                </section>
+                <!-- Personal Details Section 3 -->
               <section id="section3">
 
                 <div class="container">
                   <h3 class="text-center my-2">Personal
-                    Details</h3>
+                      Details</h3>
                   <div class="row">
                     <div class="row">
-                      <!-- Gender -->
-                      <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="gender"> Gender </label>
-                        <select class="form-control" id="gender" t-att-value="gender" name="gender">
-                          <option >Choose
-                            Gender</option>
-                          <option value="m">
-                            Male</option>
-                          <option value="f">
-                            Female</option>
-                          <option value="o">Others</option>
-                        </select>
-                      </div>
-                      <!-- Maritial Status -->
+                        <!-- Gender -->
+                        <div class="form-group mb-3 col-md-6 col-sm-12">
+                          <label for="gender">Gender</label>
+                          <select class="form-control" id="gender" name="gender">
+                            <option value="">Choose Gender</option>
+                            <option value="m" t-att-selected="student_info.gender == 'm'">Male</option>
+                            <option value="f" t-att-selected="student_info.gender == 'f'">Female</option>
+                            <option value="o" t-att-selected="student_info.gender == 'o'">
+                              Others</option>
+                          </select>
+                        </div>
+
+                        <!-- Maritial Status -->
                       <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="marital_status">
-                          Maritial Status </label>
+                            Maritial Status </label>
                         <select class="form-control" id="marital_status"
-                          t-att-value="marital_status" name="marital_status">
+                          t-att-value="student_info.marital_status" name="marital_status">
                           <option>Choose Maritial Status</option>
                           <option value="single">
-                            Single</option>
+                              Single</option>
                           <option value="married">Married</option>
                           <option value="widowed">Widowed</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="row my-1">
-                      <!-- Email -->
-                      <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="email">
-                          Email</label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="email"
-                          name="email"
-                          t-att-value="email"
-                        />
-                      </div>
-                      <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="alternate_email">
-                          Alternate Email</label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="alternate_email"
-                          name="alternate_email"
-                        />
-                      </div>
-                    </div>
-                    <div class="row my-1">
-                      <!-- Phone Number -->
-                      <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="phone">Phone
-                          Number</label>
-                        <input
-                          type="tel"
-                          class="form-control"
-                          id="phone"
-                          name="phone"
-                          t-att-value="phone"
-                        />
-                      </div>
-                      <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="emergency_contact_info">Emergency
-                          Phone Number</label>
-                        <input
-                          type="tel"
-                          class="form-control"
-                          id="emergency_contact_info"
-                          name="emergency_contact_info"
-                          t-att-value="emergency_contact_info"
-                        />
-                      </div>
-                    </div>
-
-                    <!-- Address -->
-                    <div class="row my-1">
-                      <div class="col-md-6 col-sm-12">
-                        <h3>Permanent
-                          Address</h3>
-                        <div class='mb-3'>
-                          <label for="street" class="form-label"
-                          >Permanent
-                            Address</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="street"
-                            t-att-value="street"
-                            name="street"
-                          />
-                        </div>
-                        <div class='mb-3'>
-                          <label for="zip" class="form-label"
-                          >Permanent
-                            Zip Code</label>
-                          <input type="text" class="form-control"
-                            id="zip" t-att-value="zip" name="zip" />
-                        </div>
-                        <div class='mb-3'>
-                          <label for="permanent_district_id" class="form-label"
-                          >Permanent
-                            District</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="permanent_district_id"
-                            name="permanent_district_id"
-                            t-att-value="permanent_district_id"
-                          />
-                        </div>
-                        <div class='mb-3'>
-                          <label for="country_id" class="form-label"
-                          >Permanent
-                            Country</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="country_id"
-                            t-att-value="country_id"
-                            name="country_id"
-                          />
+                          </select>
                         </div>
                       </div>
-                      <div class=" col-md-6 col-sm-12">
-                        <h3>Present
-                          Address</h3>
-                        <div class='mb-3'>
-                          <label for="present_street" class="form-label"
-                          >Present
-                            Address</label>
-                          <input type="text" class="form-control"
-                            id="present_street" t-att-value="present_street" name="present_street" />
-                        </div>
-                        <div class='mb-3'>
-                          <label for="present_zip" class="form-label"
-                          >Present
-                            Zip Code</label>
-                          <input type="text" class="form-control"
-                            id="present_zip" t-att-value="present_zip" name="present_zip" />
-                        </div>
-                        <div class='mb-3'>
-                          <label for="present_district_id" class="form-label"
-                          >Present
-                            District</label>
-                          <input type="text" class="form-control"
-                            id="present_district_id" t-att-value="present_district_id"
-                            name="present_district_id" />
-                        </div>
-                        <div class='mb-3'>
-                          <label for="present_country_id" class="form-label"
-                          >Present
-                            Country</label>
-                          <input type="text" class="form-control"
-                            id="present_country_id"
-                            t-att-value="present_country_id"
-                            name="present_country_id" />
-                        </div>
-
-                      </div>
-                    </div>
-                    <div class="form-check text-center p-5">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="is_permanent_present_address_same"
-                        t-att-value="is_permanent_present_address_same"
-                        name="is_permanent_present_address_same"
-                      />
-                      <label class="form-check-label" for="is_permanent_present_address_same`"
-                      >Present
-                        Address Same as Permanent Address</label>
-                    </div>
-                    <!-- Personal Information  -->
                     <div class="row my-1">
 
                       <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="religion">
-                          Religion</label>
-                        <select class="form-control" id="religion" t-att-value="religion"
+                            Religion</label>
+                        <select class="form-control" id="religion" t-att-value="student_info.religion"
                           name="religion">
                           <option>Choose
-                            Religion</option>
+                              Religion</option>
                           <option value="islam">Islam</option>
                           <option value="christianity">
-                            Christian</option>
+                              Christian</option>
                           <option value="hinduism">Hindu</option>
                           <option value="other">Others</option>
-                        </select>
-                      </div>
+                          </select>
+                        </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="blood_group">Blood
-                          Group</label>
-                        <select class="form-control" id="blood_group" t-att-value="blood_group"
+                            Group</label>
+                        <select class="form-control" id="blood_group" t-att-value="student_info.blood_group"
                           name="blood_group">
                           <option>Choose
-                            Blood Group</option>
+                              Blood Group</option>
                           <option value="A+">
-                            A+ve</option>
+                              A+ve</option>
                           <option value="B+">
-                            B+ve</option>
+                              B+ve</option>
                           <option value="O+">O+ve</option>
                           <option value="AB+">AB+ve</option>
                           <option value="A-">A-ve</option>
                           <option value="B-">
-                            B-ve</option>
+                              B-ve</option>
                           <option value="O-">O-ve</option>
                           <option value="AB-">AB-ve</option>
-                        </select>
+                          </select>
+                        </div>
+
+
+                      </div>
+                    <div class="row my-1">
+                        <!-- Email -->
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
+                        <label for="email">
+                            Email</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            t-att-value="student_info.email"
+                          />
+                        </div>
+                        <!-- <div class="form-group mb-3 col-md-6 col-sm-12">
+                        <label for="alternate_email">
+                            Alternate Email</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="alternate_email"
+                            name="alternate_email"
+                          />
+                        </div> -->
+                      </div>
+                    <div class="row my-1">
+                        <!-- Phone Number -->
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
+                        <label for="phone">Phone
+                            Number</label>
+                          <input
+                            type="tel"
+                            class="form-control"
+                            id="phone"
+                            name="phone"
+                            t-att-value="student_info.phone"
+                          />
+                        </div>
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
+                        <label for="emergency_contact_info">Emergency
+                            Phone Number</label>
+                          <input
+                            type="tel"
+                            class="form-control"
+                            id="emergency_contact_info"
+                            name="emergency_contact_info"
+                            t-att-value="student_info.emergency_contact_info"
+                          />
+                        </div>
                       </div>
 
+                      <!-- Address -->
+                    <div class="row my-1">
+                      <div class="col-md-6 col-sm-12">
+                        <h3>Permanent
+                            Address</h3>
+                        <div class='mb-3'>
+                          <label for="street" class="form-label"
+                          >Permanent
+                              Address</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="street"
+                              t-att-value="student_info.street"
+                              name="street"
+                            />
+                          </div>
+                        <div class='mb-3'>
+                          <label for="zip" class="form-label"
+                          >Permanent
+                              Zip Code</label>
+                            <input type="text" class="form-control"
+                              id="zip" t-att-value="student_info.zip" name="zip" />
+                          </div>
+                        <div class='mb-3'>
+                          <label for="permanent_district_id" class="form-label"
+                          >Permanent
+                              District</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="permanent_district_id"
+                              name="permanent_district_id"
+                              t-att-value="student_info.permanent_district_id"
+                            />
+                          </div>
+                        <div class='mb-3'>
+                          <label for="country_id" class="form-label"
+                          >Permanent
+                              Country</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="country_id"
+                              t-att-value="student_info.country_id"
+                              name="country_id"
+                            />
+                          </div>
+                        </div>
+                      <div class=" col-md-6 col-sm-12">
+                        <h3>Present
+                            Address</h3>
+                        <div class='mb-3'>
+                          <label for="present_street" class="form-label"
+                          >Present
+                              Address</label>
+                            <input type="text" class="form-control"
+                              id="present_street" t-att-value="student_info.present_street" name="present_street" />
+                          </div>
+                        <div class='mb-3'>
+                          <label for="present_zip" class="form-label"
+                          >Present
+                              Zip Code</label>
+                            <input type="text" class="form-control"
+                              id="present_zip" t-att-value="student_info.present_zip" name="present_zip" />
+                          </div>
+                        <div class='mb-3'>
+                          <label for="present_district_id" class="form-label"
+                          >Present
+                              District</label>
+                            <input type="text" class="form-control"
+                              id="present_district_id" t-att-value="student_info.present_district_id"
+                              name="present_district_id" />
+                          </div>
+                        <div class='mb-3'>
+                          <label for="present_country_id" class="form-label"
+                          >Present
+                              Country</label>
+                            <input type="text" class="form-control"
+                              id="present_country_id"
+                              t-att-value="student_info.present_country_id"
+                              name="present_country_id" />
+                          </div>
 
-                    </div>
+                        </div>
+                      </div>
+                    <div class="form-check text-center p-5">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="is_permanent_present_address_same"
+                          t-att-value="student_info.is_permanent_present_address_same"
+                          name="is_permanent_present_address_same"
+                        />
+                      <label class="form-check-label" for="is_permanent_present_address_same`"
+                      >Present
+                          Address Same as Permanent Address</label>
+                      </div>
+                      <!-- Personal Information  -->
+                    
                     <div class="row my-1">
                       <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="whatsapp_number" class="form-label"
                         >Whatsapp
-                          No.</label>
-                        <input type="text" class="form-control" id="whatsapp_number"
-                          t-att-value="whatsapp_number" name="whatsapp_number" />
-                      </div>
+                            No.</label>
+                          <input type="text" class="form-control" id="whatsapp_number"
+                            t-att-value="student_info.whatsapp_number" name="whatsapp_number" />
+                        </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="social_network" class="form-label"
                         >Social
-                          Network ID.</label>
-                        <input type="text" class="form-control"
-                          id="social_network"
-                          t-att-value="social_network"
-                          name="social_network"
-                        />
-                      </div>
+                            Network ID.</label>
+                          <input type="text" class="form-control"
+                            id="social_network"
+                            t-att-value="student_info.social_network"
+                            name="social_network"
+                          />
+                        </div>
 
-                    </div>
-                    <!-- Nationality -->
+                      </div>
+                      <!-- Nationality -->
                     <div class="row my-1">
                       <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="nationality">
-                          Nationality</label>
+                            Nationality</label>
                         <select class="form-control" id="nationality" name="nationality"
-                          t-att-value="nationality">
+                          t-att-value="student_info.nationality">
                           <option>Choose
-                            Nationality</option>
+                              Nationality</option>
                           <option>
-                            Bangladeshi</option>
+                              Bangladeshi</option>
                           <option>Pakistani</option>
                           <option>American</option>
                           <option>
-                            British</option>
+                              British</option>
                           <option>Vikings</option>
                           <option>Ottoman</option>
 
-                        </select>
-                      </div>
+                          </select>
+                        </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12 ">
                         <label for="national_id_no" class="form-label"
                         >National
-                          ID
-                          No.</label>
-                        <input type="text" class="form-control" id="national_id_no"
-                          t-att-value="national_id_no" name="national_id_no" />
+                            ID
+                            No.</label>
+                          <input type="text" class="form-control" id="national_id_no"
+                            t-att-value="student_info.national_id_no" name="national_id_no" />
+                        </div>
                       </div>
-                    </div>
-                    <!-- Passport -->
+                      <!-- Passport -->
                     <div class="row my-1">
                       <div class="form-group mb-3 col-md-6 col-sm-12 ">
                         <label for="nationalID" class="form-label"
                         >Passport
-                          ID
-                          No.</label>
-                        <input type="text" class="form-control" id="nationalID" />
-                      </div>
-                      <!-- <div class="form-group mb-3 col-md-6 col-sm-12">
+                            ID
+                            No.</label>
+                          <input type="text" class="form-control" id="nationalID" />
+                        </div>
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="passport_no">Passport
-                          Expire Date</label>
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="passport_no"
-                          t-att-value="passport_no"
-                          name="passport_no"
-                          placeholder="Enter Expire Date of Passport"
-                        />
-                      </div> -->
-                    </div>
-                    <!-- Visa -->
+                            Expire Date</label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="passport_no"
+                            t-att-value="student_info.passport_no"
+                            name="passport_no"
+                            placeholder="Enter Expire Date of Passport"
+                          />
+                        </div>
+                      </div>
+                      <!-- Visa -->
                     <div class="row my-1">
                       <div class="form-group mb-3 col-md-6 col-sm-12 ">
                         <label for="visa_no" class="form-label"
                         >Visa
-                          No.</label>
-                        <input type="text" class="form-control" id="visa_no" t-att-value="visa_no"
-                          name="visa_no" />
-                      </div>
-                      <!-- <div class="form-group mb-3 col-md-6 col-sm-12">
+                            No.</label>
+                          <input type="text" class="form-control" id="visa_no" t-att-value="student_info.visa_no"
+                            name="visa_no" />
+                        </div>
+                      <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="visa_expire_date">Visa
-                          Expire Date</label>
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="visa_expire_date"
-                          t-att-value="visa_expire_date"
-                          name="visa_expire_date"
-                          placeholder="Enter Expire Date of Visa"
-                        />
-                      </div> -->
-                    </div>
-                    <!-- PLease Tick -->
+                            Expire Date</label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="visa_expire_date"
+                            t-att-value="student_info.visa_expire_date"
+                            name="visa_expire_date"
+                            placeholder="Enter Expire Date of Visa"
+                          />
+                        </div>
+                      </div>
+                      <!-- PLease Tick -->
                     <div class="row my-2 ">
                       <h6>Please
-                        Tick How You Know Daffodil International
-                        University(DIU)</h6>
+                          Tick How You Know Daffodil International
+                          University(DIU)</h6>
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="know_the_diu_from_website"
-                          t-att-value="know_the_diu_from_website"
-                          name="know_the_diu_from_website"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="know_the_diu_from_website"
+                            t-att-value="student_info.know_the_diu_from_website"
+                            name="know_the_diu_from_website"
+                          />
                         <label class="form-check-label" for="know_the_diu_from_website"
                         >From,DIU
-                          Website</label>
-                      </div>
+                            Website</label>
+                        </div>
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="know_the_diu_from_social_media"
-                          t-att-value="know_the_diu_from_social_media"
-                          name="know_the_diu_from_social_media"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="know_the_diu_from_social_media"
+                            t-att-value="student_info.know_the_diu_from_social_media"
+                            name="know_the_diu_from_social_media"
+                          />
                         <label class="form-check-label" for="know_the_diu_from_social_media"
                         >Social
-                          Media</label>
-                      </div>
+                            Media</label>
+                        </div>
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="know_the_diu_from_daffodil_family"
-                          t-att-value="know_the_diu_from_daffodil_family"
-                          name="know_the_diu_from_daffodil_family"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="know_the_diu_from_daffodil_family"
+                            t-att-value="student_info.know_the_diu_from_daffodil_family"
+                            name="know_the_diu_from_daffodil_family"
+                          />
                         <label class="form-check-label" for="know_the_diu_from_daffodil_family"
                         >Daffodil
-                          Family</label>
-                      </div>
+                            Family</label>
+                        </div>
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="know_the_diu_from_diu_employee"
-                          t-att-value="know_the_diu_from_diu_employee"
-                          name="know_the_diu_from_diu_employee"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="know_the_diu_from_diu_employee"
+                            t-att-value="student_info.know_the_diu_from_diu_employee"
+                            name="know_the_diu_from_diu_employee"
+                          />
                         <label class="form-check-label" for="know_the_diu_from_diu_employee"
                         >DIU
-                          Employee</label>
+                            Employee</label>
+                        </div>
                       </div>
-                    </div>
                     <div class="row my-2">
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="know_the_diu_from_newspaper"
-                          t-att-value="know_the_diu_from_newspaper"
-                          name="know_the_diu_from_newspaper"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="know_the_diu_from_newspaper"
+                            t-att-value="student_info.know_the_diu_from_newspaper"
+                            name="know_the_diu_from_newspaper"
+                          />
                         <label class="form-check-label" for="know_the_diu_from_newspaper"
                         >
-                          Newspaper</label>
-                      </div>
+                            Newspaper</label>
+                        </div>
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="know_the_diu_from_sms"
-                          t-att-value="know_the_diu_from_sms"
-                          name="know_the_diu_from_sms"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="know_the_diu_from_sms"
+                            t-att-value="student_info.know_the_diu_from_sms"
+                            name="know_the_diu_from_sms"
+                          />
                         <label class="form-check-label" for="know_the_diu_from_sms"
                         >
-                          SMS</label>
-                      </div>
+                            SMS</label>
+                        </div>
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          t-att-value="know_the_diu_from_diu_student"
-                          name="know_the_diu_from_diu_student"
-                          id="know_the_diu_from_diu_student"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            t-att-value="student_info.know_the_diu_from_diu_student"
+                            name="know_the_diu_from_diu_student"
+                            id="know_the_diu_from_diu_student"
+                          />
                         <label class="form-check-label" for="know_the_diu_from_diu_student"
                         >DIU
-                          Student</label>
-                      </div>
+                            Student</label>
+                        </div>
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="know_the_diu_from_others"
-                          t-att-value="know_the_diu_from_others"
-                          name="know_the_diu_from_others"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="know_the_diu_from_others"
+                            t-att-value="student_info.know_the_diu_from_others"
+                            name="know_the_diu_from_others"
+                          />
                         <label class="form-check-label" for="know_the_diu_from_others"
                         >
-                          Others</label>
+                            Others</label>
+                        </div>
                       </div>
-                    </div>
-                    <!-- Tick the following if applicable -->
+                      <!-- Tick the following if applicable -->
                     <div class="row">
                       <h6>Tick
-                        the following if applicable</h6>
+                          the following if applicable</h6>
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="is_parents_freedom_fighter"
-                          t-att-value="is_parents_freedom_fighter"
-                          name="is_parents_freedom_fighter"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="is_parents_freedom_fighter"
+                            t-att-value="student_info.is_parents_freedom_fighter"
+                            name="is_parents_freedom_fighter"
+                          />
                         <label class="form-check-label" for="is_parents_freedom_fighter"
                         >Parent
-                          is Freedom Fighter</label>
-                      </div>
+                            is Freedom Fighter</label>
+                        </div>
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="is_tribal"
-                          name="is_tribal"
-                          t-att-value="is_tribal"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="is_tribal"
+                            name="is_tribal"
+                            t-att-value="student_info.is_tribal"
+                          />
                         <label class="form-check-label" for="is_tribal"
                         >Are
-                          you a
-                          Tribal</label>
+                            you a
+                            Tribal</label>
+                        </div>
                       </div>
-                    </div>
                     <div class="row">
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="is_physical_disorder"
-                          name="is_physical_disorder"
-                          t-att-value="is_physical_disorder"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="is_physical_disorder"
+                            name="is_physical_disorder"
+                            t-att-value="student_info.is_physical_disorder"
+                          />
                         <label class="form-check-label"
                           for="is_physical_disorder"
                         >Are
-                          you a Physically
-                          Disorder</label>
-                      </div>
+                            you a Physically
+                            Disorder</label>
+                        </div>
                       <div class="form-check col">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="is_first_division_player"
-                          t-att-value="is_first_division_player"
-                          name="is_first_division_player"
-                        />
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="is_first_division_player"
+                            t-att-value="student_info.is_first_division_player"
+                            name="is_first_division_player"
+                          />
                         <label class="form-check-label" for="is_first_division_player"
                         >Are
-                          you a
-                          First Division Player</label>
+                            you a
+                            First Division Player</label>
+                        </div>
                       </div>
+
+
                     </div>
-
-
-                  </div>
                   <div class="d-flex justify-content-end">
                     <div>
                       <a class="text-decoration-none" href="#topp">
@@ -1561,10 +1580,10 @@
                           class="btn btn-outline-danger my-5"
                           onclick="prevSection()"
                         >
-                          Previous
-                        </button>
-                      </a>
-                    </div>
+                            Previous
+                          </button>
+                        </a>
+                      </div>
                     <div>
                       <a class="text-decoration-none" href="#topp">
                         <button
@@ -1572,380 +1591,384 @@
                           class="btn btn-outline-success my-5"
                           onclick="nextSection()"
                         >
-                          Next
-                        </button>
-                      </a>
+                            Next
+                          </button>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-              </section>
-              <!-- Family Details Section 4 -->
+                </section>
+                <!-- Family Details Section 4 -->
               <section id="section4">
 
                 <div class="container">
                   <h2>Parent's
-                    Details</h2>
+                      Details</h2>
                   <div class="row">
-                    <!-- Fathers INformation -->
+                      <!-- Fathers INformation -->
 
                     <div class="col">
                       <span>Father's Information</span>
                       <div class="input-group">
                         <span class="input-group-text">First &amp; Last name</span>
-                        <input type="text" id="father_name" t-att-value="father_name"
-                          name="father_name"
-                          aria-label="First name"
-                          class="form-control" />
-                      </div>
+                          <input type="text" id="father_name" t-att-value="student_info.father_name"
+                            name="father_name"
+                            aria-label="First name"
+                            class="form-control" />
+                        </div>
                       <div class="form-group mb-3">
                         <label for="father_contact_number">
-                          Contact</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="father_contact_number"
-                          t-att-value="father_contact_number"
-                          name="father_contact_number"
-                          placeholder="Enter Father's Number"
-                        />
-                      </div>
+                            Contact</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="father_contact_number"
+                            t-att-value="student_info.father_contact_number"
+                            name="father_contact_number"
+                            placeholder="Enter Father's Number"
+                          />
+                        </div>
                       <div class="form-group mb-3">
                         <label for="father_email">
-                          Email</label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="father_email"
-                          t-att-value="father_email"
-                          name="father_email"
-                          placeholder="Enter Father's Email"
-                        />
-                      </div>
+                            Email</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="father_email"
+                            t-att-value="student_info.father_email"
+                            name="father_email"
+                            placeholder="Enter Father's Email"
+                          />
+                        </div>
                       <div class="form-group mb-3">
                         <label for="father_national_id">National
-                          ID</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="father_national_id"
-                          t-att-value="father_national_id"
-                          name="father_national_id"
-                          placeholder="Enter Father's Email"
-                        />
-                      </div>
+                            ID</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="father_national_id"
+                            t-att-value="student_info.father_national_id"
+                            name="father_national_id"
+                            placeholder="Enter Father's Email"
+                          />
+                        </div>
                       <div class="form-group mb-3">
                         <label for="father_passport">Passport
-                          ID</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="father_passport"
-                          name="father_passport"
-                          t-att-value="father_passport"
-                          placeholder="Enter Father's Passport ID"
-                        />
-                      </div>
-                      <!-- <div class="form-group mb-3 col">
+                            ID</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="father_passport"
+                            name="father_passport"
+                            t-att-value="student_info.father_passport"
+                            placeholder="Enter Father's Passport ID"
+                          />
+                        </div>
+                      <div class="form-group mb-3 col">
                         <label for="father_birthday">Date
-                          Of Birth</label>
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="father_birthday"
-                          t-att-value="father_birthday"
-                          name="father_birthday"
-                          placeholder="Enter Date of Birth"
-                        />
-                      </div> -->
+                            Of Birth</label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="father_birthday"
+                            t-att-value="student_info.father_birthday"
+                            name="father_birthday"
+                            placeholder="Enter Date of Birth"
+                          />
+                        </div>
                       <div class="form-group mb-3">
                         <label for="father_age">
-                          Age</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="father_age"
-                          t-att-value="father_age"
-                          name="father_age"
-                          placeholder="Enter Your Father's Age"
-                        />
-                      </div>
+                            Age</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="father_age"
+                            t-att-value="student_info.father_age"
+                            name="father_age"
+                            placeholder="Enter Your Father's Age"
+                          />
+                        </div>
                       <div class="form-group mb-3">
                         <label for="father_occupation">
-                          Occupation</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="father_occupation"
-                          t-att-value="father_occupation"
-                          name="father_occupation"
-                          placeholder="Enter Your Father's Occupation"
-                        />
-                      </div>
+                            Occupation</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="father_occupation"
+                            t-att-value="student_info.father_occupation"
+                            name="father_occupation"
+                            placeholder="Enter Your Father's Occupation"
+                          />
+                        </div>
                       <div class="form-group mb-3">
                         <label for="father_designation">
-                          Designation</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="father_designation"
-                          name="father_designation"
-                          t-att-value="father_designation"
-                          placeholder="Enter Your Father's Designation"
-                        />
-                      </div>
-                      <div class="form-group mb-3 ">
-                        <label for="father_annual_income"> Annual
-                          Income</label>
-                        <div class="input-group">
+                            Designation</label>
                           <input
-                            id="father_annual_income"
-                            t-att-value="father_annual_income"
-                            name="father_annual_income"
                             type="text"
                             class="form-control"
-                            aria-label="Dollar amount (with dot and two decimal places)"
+                            id="father_designation"
+                            name="father_designation"
+                            t-att-value="student_info.father_designation"
+                            placeholder="Enter Your Father's Designation"
                           />
+                        </div>
+                      <div class="form-group mb-3 ">
+                        <label for="father_annual_income">
+                            Annual
+                            Income</label>
+                        <div class="input-group">
+                            <input
+                              id="father_annual_income"
+                              t-att-value="student_info.father_annual_income"
+                              name="father_annual_income"
+                              type="text"
+                              class="form-control"
+                              aria-label="Dollar amount (with dot and two decimal places)"
+                            />
                           <span class="input-group-text">$</span>
-                          <span class="input-group-text">0.00</span>
+                          <span class="input-group-text">
+                              0.00</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <!-- Mothers INformation -->
+                      <!-- Mothers INformation -->
                     <div class="col">
                       <span>Mother's
-                        Information</span>
+                          Information</span>
                       <div class="input-group">
                         <span class="input-group-text">First &amp; Last name</span>
-                        <input type="text" id="mother_name" t-att-value="mother_name"
-                          name="mother_name"
-                          aria-label="First name"
-                          class="form-control" />
-                      </div>
+                          <input type="text" id="mother_name" t-att-value="student_info.mother_name"
+                            name="mother_name"
+                            aria-label="First name"
+                            class="form-control" />
+                        </div>
                       <div class="form-group  mb-3">
                         <label for="mother_contact_number">
-                          Contact</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="mother_contact_number"
-                          t-att-value="mother_contact_number"
-                          name="mother_contact_number"
-                          placeholder="Enter Mother's Number"
-                        />
-                      </div>
-                      <div class="form-group  mb-3">
-                        <label for="mother_email">
-                          Email</label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="mother_email"
-                          t-att-value="mother_email"
-                          name='mother_email'
-                          placeholder="Enter Mother's Email"
-                        />
-                      </div>
-                      <div class="form-group  mb-3">
-                        <label for="mother_national_id">National
-                          ID</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="mother_national_id"
-                          name="mother_national_id"
-                          t-att-value="mother_national_id"
-                          placeholder="Enter Mother's Email"
-                        />
-                      </div>
-                      <div class="form-group  mb-3">
-                        <label for="mother_passport">Passport
-                          ID</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="mother_passport"
-                          t-att-value="mother_passport"
-                          name="mother_passport"
-                          placeholder="Enter Mother's Passport ID"
-                        />
-                      </div>
-                      <!-- <div class="form-group  mb-3 col">
-                        <label for="mother_birthday">Date
-                          Of Birth</label>
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="mother_birthday"
-                          t-att-value="mother_birthday"
-                          name="mother_birthday"
-                          placeholder="Enter Date of Birth"
-                        />
-                      </div> -->
-                      <div class="form-group  mb-3">
-                        <label for="mother_age">
-                          Age</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="mother_age"
-                          t-att-value="mother_age"
-                          name="mother_age"
-                          placeholder="Enter Your Mother's Age"
-                        />
-                      </div>
-                      <div class="form-group  mb-3">
-                        <label for="mother_occupation">
-                          Occupation</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="mother_occupation"
-                          name="mother_occupation"
-                          t-att-value="mother_occupation"
-                          placeholder="Enter Your Mother's Occupation"
-                        />
-                      </div>
-                      <div class="form-group  mb-3">
-                        <label for="mother_designation">
-                          Designation</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="mother_designation"
-                          t-att-value="mother_designation"
-                          name="mother_designation"
-                          placeholder="Enter Your Mother's Designation"
-                        />
-                      </div>
-                      <div class="form-group  mb-3 ">
-                        <label>Annual
-                          Income</label>
-                        <div class="input-group">
+                            Contact</label>
                           <input
-                            id="mother_annual_income"
-                            t-att-value="mother_annual_income"
-                            name="mother_annual_income"
                             type="text"
                             class="form-control"
-                            aria-label="Dollar amount (with dot and two decimal places)"
+                            id="mother_contact_number"
+                            t-att-value="student_info.mother_contact_number"
+                            name="mother_contact_number"
+                            placeholder="Enter Mother's Number"
                           />
+                        </div>
+                      <div class="form-group  mb-3">
+                        <label for="mother_email">
+                            Email</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="mother_email"
+                            t-att-value="student_info.mother_email"
+                            name='mother_email'
+                            placeholder="Enter Mother's Email"
+                          />
+                        </div>
+                      <div class="form-group  mb-3">
+                        <label for="mother_national_id">National
+                            ID</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="mother_national_id"
+                            name="mother_national_id"
+                            t-att-value="student_info.mother_national_id"
+                            placeholder="Enter Mother's Email"
+                          />
+                        </div>
+                      <div class="form-group  mb-3">
+                        <label for="mother_passport">Passport
+                            ID</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="mother_passport"
+                            t-att-value="student_info.mother_passport"
+                            name="mother_passport"
+                            placeholder="Enter Mother's Passport ID"
+                          />
+                        </div>
+                      <div class="form-group  mb-3 col">
+                        <label for="mother_birthday">Date
+                            Of Birth</label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="mother_birthday"
+                            t-att-value="student_info.mother_birthday"
+                            name="mother_birthday"
+                            placeholder="Enter Date of Birth"
+                          />
+                        </div>
+                      <div class="form-group  mb-3">
+                        <label for="mother_age">
+                            Age</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="mother_age"
+                            t-att-value="student_info.mother_age"
+                            name="mother_age"
+                            placeholder="Enter Your Mother's Age"
+                          />
+                        </div>
+                      <div class="form-group  mb-3">
+                        <label for="mother_occupation">
+                            Occupation</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="mother_occupation"
+                            name="mother_occupation"
+                            t-att-value="student_info.mother_occupation"
+                            placeholder="Enter Your Mother's Occupation"
+                          />
+                        </div>
+                      <div class="form-group  mb-3">
+                        <label for="mother_designation">
+                            Designation</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="mother_designation"
+                            t-att-value="student_info.mother_designation"
+                            name="mother_designation"
+                            placeholder="Enter Your Mother's Designation"
+                          />
+                        </div>
+                      <div class="form-group  mb-3 ">
+                        <label>Annual
+                            Income</label>
+                        <div class="input-group">
+                            <input
+                              id="mother_annual_income"
+                              t-att-value="student_info.mother_annual_income"
+                              name="mother_annual_income"
+                              type="text"
+                              class="form-control"
+                              aria-label="Dollar amount (with dot and two decimal places)"
+                            />
                           <span class="input-group-text">$</span>
-                          <span class="input-group-text">0.00</span>
+                          <span class="input-group-text">
+                              0.00</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <!-- LOcal Guardian -->
+                    <!-- LOcal Guardian -->
                   <div class="row my-5">
                     <h6 class="m-3">Local
-                      Guardian</h6>
+                        Guardian</h6>
                     <div class="col">
 
                       <div>
                         <div class="input-group">
                           <span class="input-group-text">First &amp; Last name</span>
-                          <input type="text" id="local_guardian_name"
-                            t-att-value="local_guardian_name" name="local_guardian_name"
-                            aria-label="First name"
-                            class="form-control" />
+                            <input type="text" id="local_guardian_name"
+                              t-att-value="student_info.local_guardian_name" name="local_guardian_name"
+                              aria-label="First name"
+                              class="form-control" />
+                          </div>
                         </div>
-                      </div>
                       <div class="form-group  mb-3">
                         <label for="local_guardian_email">
-                          Email</label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="local_guardian_email"
-                          name="local_guardian_email"
-                          t-att-value="local_guardian_email"
-                          placeholder="Enter Local Guardian's Email"
-                        />
-                      </div>
+                            Email</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="local_guardian_email"
+                            name="local_guardian_email"
+                            t-att-value="student_info.local_guardian_email"
+                            placeholder="Enter Local Guardian's Email"
+                          />
+                        </div>
                       <div class="form-group mb-3">
                         <label for="local_guardian_contact_number">
-                          Contact</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="local_guardian_contact_number"
-                          name="local_guardian_contact_number"
-                          t-att-value="local_guardian_contact_number"
-                          placeholder="Enter Local Guardian's Number"
-                        />
-                      </div>
+                            Contact</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="local_guardian_contact_number"
+                            name="local_guardian_contact_number"
+                            t-att-value="student_info.local_guardian_contact_number"
+                            placeholder="Enter Local Guardian's Number"
+                          />
+                        </div>
                       <div class="form-group mb-3">
                         <label for="local_guardian_national_id">National
-                          ID</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="local_guardian_national_id"
-                          name="local_guardian_national_id"
-                          t-att-value="local_guardian_national_id"
-                          placeholder="Enter Local Guardian's National Id"
-                        />
-                      </div>
+                            ID</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="local_guardian_national_id"
+                            name="local_guardian_national_id"
+                            t-att-value="student_info.local_guardian_national_id"
+                            placeholder="Enter Local Guardian's National Id"
+                          />
+                        </div>
                       <div class="form-group mb-3 col ">
                         <label for="local_guardian_passport" class="form-label"
                         >Passport
-                          ID No.</label>
-                        <input type="text" class="form-control"
-                          t-att-value="local_guardian_passport" name='local_guardian_passport'
-                          id="local_guardian_passport" />
-                      </div>
+                            ID No.</label>
+                          <input type="text" class="form-control"
+                            t-att-value="student_info.local_guardian_passport" name='local_guardian_passport'
+                            id="local_guardian_passport" />
+                        </div>
                       <div class="form-group mb-3">
                         <label for="local_guardian_relation">
-                          Relationship</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="local_guardian_relation"
-                          t-att-value='local_guardian_relation'
-                          name="local_guardian_relation"
-                          placeholder="Enter Your Relationship with Local Guardian"
-                        />
+                            Relationship</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="local_guardian_relation"
+                            t-att-value='student_info.local_guardian_relation'
+                            name="local_guardian_relation"
+                            placeholder="Enter Your Relationship with Local Guardian"
+                          />
+                        </div>
                       </div>
-                    </div>
 
                     <div class="col">
 
                       <div>
                         <label for="local_guardian_street" class="form-label"
                         >Present
-                          Address</label>
-                        <input type="text" class="form-control" t-att-value="local_guardian_street"
-                          name="local_guardian_street"
-                          id="local_guardian_street" />
-                      </div>
+                            Address</label>
+                          <input type="text" class="form-control"
+                            t-att-value="student_info.local_guardian_street"
+                            name="local_guardian_street"
+                            id="local_guardian_street" />
+                        </div>
                       <div class="mb-3">
                         <label for="local_guardian_zip"  class="form-label"
                         >Present
-                          Zip Code</label>
-                        <input type="text" class="form-control" id="local_guardian_zip"
-                          t-att-value="local_guardian_zip" name="local_guardian_zip" />
-                      </div>
+                            Zip Code</label>
+                          <input type="text" class="form-control" id="local_guardian_zip"
+                            t-att-value="student_info.local_guardian_zip" name="local_guardian_zip" />
+                        </div>
                       <div class="mb-3">
                         <label for="local_guardian_state_id" class="form-label"
                         >Present
-                          District</label>
-                        <input type="text" class="form-control"
-                          t-att-value="local_guardian_state_id" name="local_guardian_state_id"
-                          id="local_guardian_state_id" />
-                      </div>
+                            District</label>
+                          <input type="text" class="form-control"
+                            t-att-value="student_info.local_guardian_state_id" name="local_guardian_state_id"
+                            id="local_guardian_state_id" />
+                        </div>
                       <div class="mb-3">
                         <label for="local_guardian_country_id" class="form-label"
                         >Present
-                          Country</label>
-                        <input type="text" class="form-control" name="local_guardian_country_id"
-                          t-att-value="local_guardian_country_id"
-                          id="local_guardian_country_id" />
+                            Country</label>
+                          <input type="text" class="form-control" name="local_guardian_country_id"
+                            t-att-value="student_info.local_guardian_country_id"
+                            id="local_guardian_country_id" />
+                        </div>
                       </div>
+
+
                     </div>
-
-
-                  </div>
                   <div class="d-flex justify-content-end">
                     <div>
                       <a class="text-decoration-none" href="#topp">
@@ -1954,10 +1977,10 @@
                           class="btn btn-outline-danger my-5"
                           onclick="prevSection()"
                         >
-                          Previous
-                        </button>
-                      </a>
-                    </div>
+                            Previous
+                          </button>
+                        </a>
+                      </div>
                     <div>
                       <a class="text-decoration-none" href="#topp">
                         <button
@@ -1965,18 +1988,18 @@
                           class="btn btn-outline-success my-5"
                           onclick="nextSection()"
                         >
-                          Next
-                        </button>
-                      </a>
+                            Next
+                          </button>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </section>
-              <!-- Payment Details Section -->
+                </section>
+                <!-- Payment Details Section -->
               <section id="section5">
                 <div class="container">
                   <h2>Invoice
-                    &amp; Payment Details</h2>
+                      &amp; Payment Details</h2>
                   <h6>Admission Form Fee</h6>
                   <div>
                     <div class="row">
@@ -1985,158 +2008,158 @@
                         <div class="form-group mb-3">
                           <label>Invoice</label>
                           <div class="input-group">
-                            <input
-                              type="text"
-                              class="form-control"
-                              aria-label="Dollar amount (with dot and two decimal places)"
-                            />
+                              <input
+                                type="text"
+                                class="form-control"
+                                aria-label="Dollar amount (with dot and two decimal places)"
+                              />
                             <span class="input-group-text">
-                              ৳</span>
+                                ৳</span>
+                            </div>
                           </div>
-                        </div>
                         <div class="form-group mb-3">
                           <label>Total
-                            Amount</label>
+                              Amount</label>
                           <div class="input-group">
-                            <input
-                              type="text"
-                              class="form-control"
-                              aria-label="Dollar amount (with dot and two decimal places)"
-                            />
+                              <input
+                                type="text"
+                                class="form-control"
+                                aria-label="Dollar amount (with dot and two decimal places)"
+                              />
                             <span class="input-group-text">৳</span>
+                            </div>
                           </div>
-                        </div>
                         <div class="form-group mb-3">
                           <label>Amount
-                            Paid</label>
+                              Paid</label>
                           <div class="input-group">
-                            <input
-                              type="text"
-                              class="form-control"
-                              aria-label="Dollar amount (with dot and two decimal places)"
-                            />
+                              <input
+                                type="text"
+                                class="form-control"
+                                aria-label="Dollar amount (with dot and two decimal places)"
+                              />
                             <span class="input-group-text">৳</span>
+                            </div>
                           </div>
-                        </div>
                         <div class="form-group mb-3">
                           <label>Amount
-                            Due</label>
+                              Due</label>
                           <div class="input-group">
-                            <input
-                              type="text"
-                              class="form-control"
-                              aria-label="Dollar amount (with dot and two decimal places)"
-                            />
+                              <input
+                                type="text"
+                                class="form-control"
+                                aria-label="Dollar amount (with dot and two decimal places)"
+                              />
                             <span class="input-group-text">৳</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
                       <div class="col-md-6 col-sm-12">
                         <div class='mb-3'>
                           <label for="payment_status" class="form-label"
                           >Payment
-                            Status</label>
-                          <input type="text" class="form-control"
-                            id="payment_status" />
-                        </div>
+                              Status</label>
+                            <input type="text" class="form-control"
+                              id="payment_status" />
+                          </div>
                         <div class='mb-3'>
                           <label for="payment_mediums" class="form-label"
                           >Payment
-                            Mediums</label>
-                          <input type="text" class="form-control"
-                            id="payment_mediums" />
-                        </div>
+                              Mediums</label>
+                            <input type="text" class="form-control"
+                              id="payment_mediums" />
+                          </div>
                         <div class="form-group mb-3 ">
                           <label for="paymentDate">Date
-                            Of Payment</label>
-                          <input
-                            type="date"
-                            class="form-control"
-                            id="paymentDate"
-                          />
+                              Of Payment</label>
+                            <input
+                              type="date"
+                              class="form-control"
+                              id="paymentDate"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
                     <h4 class="my-3">Admission
-                      Form Fees</h4>
+                        Form Fees</h4>
                     <div class="row">
                       <div class="col-md-6 col-sm-12">
 
                         <div class="form-group mb-3">
                           <label>Invoice</label>
                           <div class="input-group">
-                            <input
-                              type="text"
-                              class="form-control"
-                              aria-label="Dollar amount (with dot and two decimal places)"
-                            />
+                              <input
+                                type="text"
+                                class="form-control"
+                                aria-label="Dollar amount (with dot and two decimal places)"
+                              />
                             <span class="input-group-text">৳</span>
+                            </div>
                           </div>
-                        </div>
                         <div class="form-group mb-3">
                           <label>Total
-                            Amount</label>
+                              Amount</label>
                           <div class="input-group">
-                            <input
-                              type="text"
-                              class="form-control"
-                              aria-label="Dollar amount (with dot and two decimal places)"
-                            />
+                              <input
+                                type="text"
+                                class="form-control"
+                                aria-label="Dollar amount (with dot and two decimal places)"
+                              />
                             <span class="input-group-text">৳</span>
+                            </div>
                           </div>
-                        </div>
                         <div class="form-group mb-3">
                           <label>Amount
-                            Paid</label>
+                              Paid</label>
                           <div class="input-group">
-                            <input
-                              type="text"
-                              class="form-control"
-                              aria-label="Dollar amount (with dot and two decimal places)"
-                            />
+                              <input
+                                type="text"
+                                class="form-control"
+                                aria-label="Dollar amount (with dot and two decimal places)"
+                              />
                             <span class="input-group-text">৳</span>
+                            </div>
                           </div>
-                        </div>
                         <div class="form-group mb-3">
                           <label>Amount
-                            Due</label>
+                              Due</label>
                           <div class="input-group">
-                            <input
-                              type="text"
-                              class="form-control"
-                              aria-label="Dollar amount (with dot and two decimal places)"
-                            />
+                              <input
+                                type="text"
+                                class="form-control"
+                                aria-label="Dollar amount (with dot and two decimal places)"
+                              />
                             <span class="input-group-text">৳</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
                       <div class="col-md-6 col-sm-12">
                         <div>
                           <label for="payment_status" class="form-label"
                           >Payment
-                            Status</label>
-                          <input type="text" class="form-control"
-                            id="payment_status" />
-                        </div>
+                              Status</label>
+                            <input type="text" class="form-control"
+                              id="payment_status" />
+                          </div>
                         <div>
                           <label for="payment_mediums" class="form-label"
                           >Payment
-                            Mediums</label>
-                          <input type="text" class="form-control"
-                            id="payment_mediums" />
-                        </div>
+                              Mediums</label>
+                            <input type="text" class="form-control"
+                              id="payment_mediums" />
+                          </div>
                         <div class="form-group mb-3 col-md-6 col-sm-12">
                           <label for="paymentDate">Date
-                            Of Payment</label>
-                          <input
-                            type="date"
-                            class="form-control"
-                            id="paymentDate"
-                          />
+                              Of Payment</label>
+                            <input
+                              type="date"
+                              class="form-control"
+                              id="paymentDate"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
                   <div class="d-flex justify-content-end">
                     <div>
                       <a class="text-decoration-none" href="#topp">
@@ -2145,23 +2168,26 @@
                           class="btn btn-outline-danger my-5"
                           onclick="prevSection()"
                         >
-                          Previous
-                        </button>
-                      </a>
-                    </div>
+                            Previous
+                          </button>
+                        </a>
+                      </div>
                     <div>
                       <a class="text-decoration-none" href="#topp">
                         <button
                           type="submit"
+                          value="Update"
                           class="btn btn-outline-primary my-5"
-                        >
-                          Submit
-                        </button>
-                      </a>
+                          name="update"
+                          >
+                            Submit
+                          </button>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </section>
+                </section>
+              </t>
             </form>
           </body>
         </div>

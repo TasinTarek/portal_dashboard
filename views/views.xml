@@ -1,60 +1,738 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="smartedu_portal.list">
-      <field name="name">smartedu_portal list</field>
-      <field name="model">smartedu_portal.smartedu_portal</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
+    <record id="professional_skill_info_menu" model="website.menu">
+      <field name="name">Professional Skills</field>
+      <field name="url">/professional_skill_info</field>
+      <field name="parent_id" ref="website.main_menu" />
+      <field name="sequence" type="int">81</field>
+      <field name="group_ids" eval="[ref('sbac.group_sbac_student')]" />
     </record>
--->
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="smartedu_portal.action_window">
-      <field name="name">smartedu_portal window</field>
-      <field name="res_model">smartedu_portal.smartedu_portal</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
+    <!-- list template -->
+    <template id="professional_skill_info_list" name="Professional Skills">
+      <t t-call="website.layout">
+        <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <body>
+          <div class="container">
+            <div class="container-xl">
+              <div class="row pt-2">
+                <div class="table-responsive table-wrapper">
 
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="smartedu_portal.action_server">
-      <field name="name">smartedu_portal server</field>
-      <field name="model_id" ref="model_smartedu_portal_smartedu_portal"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
+                  <div class="table-title">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <h2>
+                          <b>Professional Skills</b>
+                        </h2>
+                      </div>
+                      <div class="col-sm-6">
+                        <a href="/professional_skill_info/create" class="btn btn-success">
+                          <i class="material-icons">&#xE147;</i>
+                          <span>Create New</span>
+                        </a>
+                        <a href="/student" class="btn btn-info">
+                          <i class="bi bi-arrow-left-circle-fill"></i>
+                          <span>Back to Dashboard</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-    <!-- Top menu item -->
-<!--
-    <menuitem name="smartedu_portal" id="smartedu_portal.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="smartedu_portal.menu_1" parent="smartedu_portal.menu_root"/>
-    <menuitem name="Menu 2" id="smartedu_portal.menu_2" parent="smartedu_portal.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="smartedu_portal.menu_1_list" parent="smartedu_portal.menu_1"
-              action="smartedu_portal.action_window"/>
-    <menuitem name="Server to list" id="smartedu_portal" parent="smartedu_portal.menu_2"
-              action="smartedu_portal.action_server"/>
--->
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th class="invisible">ID</th>
+                        <th>Code</th>
+                        <th>Total Work Experience</th>
+                        <th>Main Interest</th>
+                        <th>Main Professional Skill Area</th>
+                        <th>Video Resume Link</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-foreach="request.env['sbac.professional.skill.info'].search([])"
+                        t-as="obj">
+                        <tr>
+                          <td class="id">
+                            <t t-esc="obj.id" />
+                          </td>
+                          <td>
+                            <t t-esc="obj.name" />
+                          </td>
+                          <td>
+                            <t t-esc="obj.total_work_experience_year" />
+                          </td>
+                          <td>
+                            <t t-esc="obj.main_interest" />
+                          </td>
+                          <td>
+                            <t t-esc="obj.main_professional_skill_area" />
+                          </td>
+                          <td>
+                            <t t-esc="obj.video_resume_link" />
+                          </td>
+                          <td>
+                            <a t-attf-href="/professional_skill_info/update?id={{obj.id}}"
+                              class="edit">
+                              <i class="material-icons" data-toggle="tooltip"
+                                title="Edit">
+                                &#xE254;
+                              </i>
+                            </a>
+                            <a href="#deleteModal" class="delete" data-toggle="modal">
+                              <i class="material-icons" data-toggle="tooltip"
+                                title="Delete">
+                                &#xE872;
+                              </i>
+                            </a>
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delete modal -->
+          <div id="deleteModal" class="modal fade">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form action="/professional_skill_info_delete">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Delete this skill</h4>
+                    <button type="button" class="close" data-dismiss="modal"
+                      aria-hidden="true">
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <input type="text" name="id" id="id" value="" class="invisible" />
+                    <p>Are you sure you want to delete these Record?</p>
+                    <p class="text-warning">
+                      <small>This action cannot be undone.</small>
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <input value="Cancel" type="button" class="btn btn-default"
+                      data-dismiss="modal" />
+                    <input value="Delete" type="submit" class="btn btn-danger" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </body>
+      </t>
+    </template>
+
+    <!-- create template -->
+    <template id="professional_skill_info_create" name="Create a new Professional Skill">
+      <t t-call="website.layout">
+
+        <body>
+          <div class="container pt-5">
+            <form action="/professional_skill_info_create" method="post"
+              enctype="multipart/form-data">
+              <div class="card card-default">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                <div class="card-header title-card">
+                  <p class="card-title text-blue pt-4">
+                    <i class="glyphicon glyphicon-lock text-gold" />
+                    <b>Professional Info</b>
+                  </p>
+                </div>
+
+                <div class="card-body">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Code</label>
+                        <input name="name" t-att-value="code" type="text" class="form-control"
+                          required="True" readonly="1" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Total Work Experience in year *</label>
+                        <input name="total_work_experience_year" type="number"
+                          class="form-control" required="True" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Main Interest *</label>
+                        <input name="main_interest" type="text" class="form-control"
+                          required="True" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Main Professional Skill Area *</label>
+                        <input name="main_professional_skill_area" type="text"
+                          class="form-control" required="True" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Video Resume Link</label>
+                        <input name="video_resume_link" type="text"
+                          class="form-control" />
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+
+                      <div class="one2many-table" id="one2many_table">
+                        <div id="one2many_body">
+
+                          <div class="row one2many-row" id="one2many_row">
+                            <div class="col-md-12">
+                              <div class="form-group checked-record">
+                                <input id="checked_record" type="checkbox" />
+                                <label class="control-label">Skill Details</label>
+                              </div>
+                            </div>
+                            <div class="card-body-pro">
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Organization Name
+                                      *
+                                    </label>
+                                    <input id="name" type="text"
+                                      class="form-control"
+                                      required="True" />
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Department *
+                                    </label>
+                                    <input id="department" type="text"
+                                      class="form-control"
+                                      required="True" />
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Work Start Date *
+                                    </label>
+                                    <input id="work_start_date" type="date"
+                                      class="form-control" required="True" />
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Work End Date *
+                                    </label>
+                                    <input id="work_end_date" type="date"
+                                      class="form-control" required="True" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Designation *
+                                    </label>
+                                    <input id="designation" type="text"
+                                      class="form-control" required="True" />
+                                  </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Work Experience
+                                      Letter
+                                    </label>
+                                    <input type="file" class="file" multiple="false"
+                                      data-show-upload="true"
+                                      data-show-caption="true"
+                                      lass="file" data-show-preview="true"
+                                      id="work_experience_letter" />
+                                  </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Work Position URL
+                                    </label>
+                                    <input id="work_position_url" type="text"
+                                      class="form-control" />
+                                  </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Work Status</label>
+                                    <select id="work_status" class="form-control"
+                                      required="True">
+                                      <option value="part_time" selected="True">
+                                        Part time
+                                      </option>
+                                      <option value="full_time">
+                                        Full time
+                                      </option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Duration in hour
+                                      *
+                                    </label>
+                                    <input id="duration" type="number"
+                                      class="form-control"
+                                      required="True" />
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Credit Hour</label>
+                                    <input id="credit_hour" type="text"
+                                      readonly="readonly"
+                                      class="form-control"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Reporting Boss
+                                      Name*
+                                    </label>
+                                    <input id="reporting_boss_name" type="text"
+                                      class="form-control" required="True" />
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Reporting Boss
+                                      Email *
+                                    </label>
+                                    <input id="reporting_boss_email" type="text"
+                                      class="form-control" required="True" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Reporting Boss
+                                      Phone *
+                                    </label>
+                                    <input id="reporting_boss_phone" type="number"
+                                      class="form-control" required="True" />
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Number of Employee
+                                      Supervised
+                                    </label>
+                                    <input id="number_of_employee_supervised_by_you"
+                                      type="number" class="form-control" />
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">Address*
+                                    </label>
+                                    <input id="street" type="text"
+                                      class="form-control" required="True" />
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="control-label">City
+                                    </label>
+                                    <input id="city"
+                                      type="text" class="form-control" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <input type="hidden" name="all_row_data" id="all_row_data" />
+
+                      <div class="form-row row button-space-2">
+                        <div class="form-group">
+                          <button type="button" id="add_row" class="btn btn-success">
+                            Add new record
+                          </button>
+                          <button type="button" id="delete_row" class="btn btn-danger">
+                            Delete record
+                          </button>
+                        </div>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+
+                  <br />
+                  <div class="row">
+                    <div class="col-lg-12 pb-5">
+                      <div class="pull-right">
+                        <button class="btn btn-success btn-lg" id="submit_skill_info"
+                          type="submit">Save
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </form>
+            <br />
+
+          </div>
+        </body>
+      </t>
+    </template>
+
+    <!-- update template -->
+    <template id="professional_skill_info_update" name="Update Professional Skill">
+      <t t-call="website.layout">
+        <body>
+          <div class="container pt-5">
+            <form action="/professional_skill_info_update" method="post"
+              enctype="multipart/form-data">
+              <div class="card card-default">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                <div class="card-header title-card">
+                  <p class="card-title text-blue pt-4">
+                    <i class="glyphicon glyphicon-lock text-gold" />
+                    <b>Update Professional Info</b>
+                  </p>
+                </div>
+
+                <div class="card-body">
+                  <div class="invisible" style="height: 0;">
+                    <input name="id" t-att-value="skill_info.id" type="text" />
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Code</label>
+                        <input name="name" t-att-value="skill_info.name" type="text"
+                          class="form-control" required="True" readonly="1" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Total Work Experience in year</label>
+                        <input name="total_work_experience_year"
+                          t-att-value="skill_info.total_work_experience_year" type="number"
+                          class="form-control" required="True" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Main Interest</label>
+                        <input name="main_interest" t-att-value="skill_info.main_interest"
+                          type="text" class="form-control" required="True" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Main Professional Skill Area</label>
+                        <input name="main_professional_skill_area"
+                          t-att-value="skill_info.main_professional_skill_area" type="text"
+                          class="form-control" required="True" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">Video Resume Link</label>
+                      <input name="video_resume_link"
+                        t-att-value="skill_info.video_resume_link" type="text"
+                        class="form-control" required="True" />
+                      <!--                                             <a t-att-href="video_resume_link"-->
+                      <!--                                                   class="o_form_uri o_field_widget" target="_blank"-->
+                      <!--                                                   name="video_resume_link" style="cursor: pointer;">-->
+                      <!--                                                -->
+                      <!--                                                </a>-->
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+
+                      <div class="one2many-table" id="one2many_table">
+                        <div id="one2many_body">
+
+                          <t t-foreach="skill_info.professional_skill_line_ids" t-as="line">
+                            <div class="row one2many-row" id="one2many_row">
+                              <div class="col-md-12">
+                                <div class="form-group checked-record">
+                                  <input id="checked_record" type="checkbox" />
+                                  <label class="control-label" for="checked_record">
+                                    Skill Details
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="card-body-pro">
+                                <div class="row">
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Organization
+                                        Name
+                                      </label>
+                                      <input t-att-value="line.name" id="name"
+                                        type="text"
+                                        class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Department
+                                      </label>
+                                      <input t-att-value="line.department"
+                                        id="department"
+                                        type="text" class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Work Start
+                                        Date
+                                      </label>
+                                      <input t-att-value="line.work_start_date"
+                                        id="work_start_date" type="date"
+                                        class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Work End Date
+                                      </label>
+                                      <input t-att-value="line.work_end_date"
+                                        id="work_end_date" type="date"
+                                        class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Designation
+                                      </label>
+                                      <input t-att-value="line.designation"
+                                        id="designation" type="text"
+                                        class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Work Experience
+                                        Letter
+                                      </label>
+                                      <input type="file" class="file"
+                                        multiple="false"
+                                        t-att-value="line.work_experience_letter"
+                                        data-show-upload="true"
+                                        data-show-caption="true" lass="file"
+                                        data-show-preview="true"
+                                        id="work_experience_letter" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Work Position
+                                        URL
+                                      </label>
+                                      <input t-att-value="line.work_position_url"
+                                        id="work_position_url" type="text"
+                                        class="form-control" />
+                                    </div>
+                                  </div>
+
+
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Work Status
+                                      </label>
+                                      <select t-att-selected="line.work_status"
+                                        id="work_status"
+                                        class="form-control"
+                                        required="True">
+                                        <option value="part_time"
+                                          selected="True">
+                                          Part time
+                                        </option>
+                                        <option value="full_time">
+                                          Full time
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Duration in
+                                        hour
+                                      </label>
+                                      <input t-att-value="line.duration"
+                                        id="duration"
+                                        type="number" class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Credit Hour
+                                      </label>
+                                      <input t-att-value="line.credit_hour"
+                                        id="credit_hour" type="text"
+                                        readonly="readonly"
+                                        class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Reporting Boss
+                                        Name*
+                                      </label>
+                                      <input t-att-value="line.reporting_boss_name"
+                                        id="reporting_boss_name" type="text"
+                                        class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Reporting Boss
+                                        Email
+                                      </label>
+                                      <input t-att-value="line.reporting_boss_email"
+                                        id="reporting_boss_email" type="text"
+                                        class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Reporting Boss
+                                        Phone
+                                      </label>
+                                      <input t-att-value="line.reporting_boss_phone"
+                                        id="reporting_boss_phone"
+                                        type="number"
+                                        class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Number of
+                                        Employee
+                                        Supervised
+                                      </label>
+                                      <input t-att-value="line.number_of_employee_supervised_by_you"
+                                        id="number_of_employee_supervised_by_you"
+                                        type="number" class="form-control" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">Address
+                                      </label>
+                                      <input t-att-value="line.street"
+                                        id="street"
+                                        type="text"
+                                        class="form-control"
+                                        required="True" />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label">City
+                                      </label>
+                                      <input t-att-value="line.city"
+                                        id="city"
+                                        type="text" class="form-control" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </t>
+
+                        </div>
+                      </div>
+                      <input type="hidden" name="all_row_data" id="all_row_data" />
+
+                      <div class="form-row row button-space-2">
+                        <div class="form-group">
+                          <button type="button" id="add_row" class="btn btn-success">
+                            Add new record
+                          </button>
+                          <button type="button" id="delete_row" class="btn btn-danger">
+                            Delete record
+                          </button>
+                        </div>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+
+                  <br />
+
+                  <div class="row">
+                    <div class="col-lg-12 pb-5">
+                      <div class="pull-right">
+                        <button class="btn btn-success btn-lg" id="submit_skill_info"
+                          type="submit">Update
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </form>
+            <br />
+          </div>
+        </body>
+      </t>
+    </template>
+
   </data>
 </odoo>
