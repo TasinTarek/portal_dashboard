@@ -202,6 +202,8 @@
     </template>
     <!-- Application LIst -->
     <template id="se_student_application_list">
+      <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+      
       <t t-call="portal.portal_layout">
         <t t-foreach="informations" t-as="informations" />
         <div class="container">
@@ -232,12 +234,19 @@
                   <t t-esc="informations.email" />
                 </td> 
                 <td>
-                  <a href="/my/admission/online/applications/list/form"
-                    class="btn btn-secondary btn-sm" role="button" aria-disabled="true" name="view">
-                    View</a>
-                    <a href="/my/admission/online/applications/list/form"
-                    class="btn btn-secondary btn-sm" name="update" role="button" aria-disabled="true">
-                    Update</a>
+                  <a
+                    href="/my/admission/online/applications/list/form">
+                    <button name="view" class="btn btn-outline-danger btn-sm">
+                      View</button>
+                  </a>
+                  <a
+                    href="/my/admission/online/applications/list/form?informations={{ res_user.user_id or '' }}">
+                    <button name="update"  class="btn btn-outline-danger btn-sm">
+                      Update</button>
+                  </a>
+
+                  <!--  -->
+
                 </td>
               </tr>
             </tbody>
@@ -369,9 +378,9 @@
               </div>
             </div>
             <form role="form" class="_container" method="post"
-              action="/my/admission/online/applications/list/form">
+              action="/my/admission/online/applications/update">
               <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-              <input type="hidden" name="student_id" value="{{ student_info.id }}" />
+              
               <t t-foreach="student_info" t-as="student_info">
               <section id="section1" style="display: block">
                 <div class="container">
@@ -1117,10 +1126,14 @@
                         <select class="form-control" id="marital_status"
                           t-att-value="student_info.marital_status" name="marital_status">
                           <option>Choose Maritial Status</option>
-                          <option value="single">
+                            <option value="single" t-att-selected="student_info.marital_status == 'single'">
                               Single</option>
-                          <option value="married">Married</option>
-                          <option value="widowed">Widowed</option>
+                            <option value="married"
+                              t-att-selected="student_info.marital_status == 'married'">
+                              Married</option>
+                            <option value="widowed" t-att-selected="student_info.marital_status == 'widowed'">
+                              Widowed
+                            </option>
                           </select>
                         </div>
                       </div>
@@ -1133,11 +1146,16 @@
                           name="religion">
                           <option>Choose
                               Religion</option>
-                          <option value="islam">Islam</option>
-                          <option value="christianity">
+                          <option value="islam"
+                              t-att-selected="student_info.religion == 'islam'">Islam</option>
+                          <option value="christianity"
+                              t-att-selected="student_info.religion == 'christianity'">
                               Christian</option>
-                          <option value="hinduism">Hindu</option>
-                          <option value="other">Others</option>
+                          <option value="hinduism"
+                              t-att-selected="student_info.religion == 'hinduism'">Hindu</option>
+                          <option value="other"
+                              t-att-selected="student_info.religion == 'other'">
+                              Others</option>
                           </select>
                         </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
@@ -1147,17 +1165,19 @@
                           name="blood_group">
                           <option>Choose
                               Blood Group</option>
-                          <option value="A+">
+                          <option value="A+" t-att-selected="student_info.blood_group == 'A+'">
                               A+ve</option>
-                          <option value="B+">
+                          <option value="B+" t-att-selected="student_info.blood_group == 'B+'">
                               B+ve</option>
-                          <option value="O+">O+ve</option>
-                          <option value="AB+">AB+ve</option>
-                          <option value="A-">A-ve</option>
-                          <option value="B-">
+                          <option value="O+" t-att-selected="student_info.blood_group == 'O+'">O+ve</option>
+                          <option value="AB+" t-att-selected="student_info.blood_group == 'AB+'">
+                              AB+ve</option>
+                          <option value="A-" t-att-selected="student_info.blood_group == 'A-'">A-ve</option>
+                          <option value="B-" t-att-selected="student_info.blood_group == 'B-'">
                               B-ve</option>
-                          <option value="O-">O-ve</option>
-                          <option value="AB-">AB-ve</option>
+                          <option value="O-" t-att-selected="student_info.blood_group == 'O-'">O-ve</option>
+                          <option value="AB-" t-att-selected="student_info.blood_group == 'AB-'">
+                              AB-ve</option>
                           </select>
                         </div>
 
@@ -2173,16 +2193,8 @@
                         </a>
                       </div>
                     <div>
-                      <a class="text-decoration-none" href="#topp">
-                        <button
-                          type="submit"
-                          value="Update"
-                          class="btn btn-outline-primary my-5"
-                          name="update"
-                          >
-                            Submit
-                          </button>
-                        </a>
+                        <button type="submit" name="update" class="btn btn-primary">
+                          Update</button>
                       </div>
                     </div>
                   </div>
@@ -2195,11 +2207,13 @@
     </template>
     <!-- Thank You Page -->
     <record id="patient_thanks" model="website.page">
-      <field name="name">Thanks</field>
+      <field name="name">
+        Thanks</field>
       <field name="type">qweb</field>
       <field name="url">/applicant-thank-you</field>
       <field name="website_published">True</field>
-      <field name="key">smartedu_portal.applicant_thanks</field>
+      <field name="key">
+        smartedu_portal.applicant_thanks</field>
       <field name="arch" type="xml">
         <t name="Thanks" t-name="smartedu_portal.applicant_thanks">
 
