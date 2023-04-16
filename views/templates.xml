@@ -430,8 +430,8 @@
                         <label>Student
                             ID</label>
                           <input
-                            name="student_id"
-                            t-att-value="student_info.student_id" id="student_id"
+                            name="student_id_text"
+                            t-att-value="student_info.student_id_text" id="student_id_text"
                             type="text"
                             class="form-control"
                             placeholder="Type your Student ID"
@@ -509,24 +509,24 @@
                     </div>
                   <div class="row my-5">
                     <div class="col-md-6 col-sm-12">
-                        <!-- <div class="form-group mb-3 ">
-                        <label for="form_type">Select
+                        <div class="form-group mb-3 ">
+                        <label for="program_id">Select
                             Program</label>
-                          <select class="form-control" id="form_type" name="form_type"
-                            t-att-value="student_info.form_type">
-                            <option value="">Choose Degree</option>
-                            <option value="local_bachelor_program_hsc"
-                              t-att-selected="student_info.form_type === 'local_bachelor_program_hsc'">Bachelor's
+                          <select class="form-control" id="program_id" name="program_id"
+                            t-att-value="student_info.program_id">
+                            <option value="">Choose Program</option>
+                            <option 
+                              t-att-selected="student_info.program_id.name">Bachelor's
                               Degree</option>
-                            <option value="local_masters_program_bachelor"
-                              t-att-selected="student_info.form_type === 'local_masters_program_bachelor'">Master's
+                            <option 
+                              t-att-selected="student_info.program_id.name">Master's
                               Degree</option>
-                            <option value="international_masters_program"
-                              t-att-selected="student_info.form_type === 'international_masters_program'">
+                            <option 
+                              t-att-selected="student_info.program_id.name">
                               PhD</option>
                           </select>
 
-                        </div> -->
+                        </div>
                         <!-- <div class="form-group mb-3">
                         <label for="curriculum_id">
                             Curriculumn</label>
@@ -543,17 +543,16 @@
                           </select>
 
                         </div> -->
-                      <div class="form-group mb-3">
-                        <label for="batch_id">
-                            Batch</label>
-                        <select class="form-control" id="batch_id" t-att-value="student_info.batch_id"
-                          name="batch_id">
+                        <select class="form-control" id="batch_id" name="batch_id">
                           <option>Choose Batch</option>
-                          <option>Batch One</option>
-                          <option>Batch
-                              Two</option>
-                          </select>
-                        </div>
+                          <t t-foreach="batch" t-as="batch">
+                            <option t-att-value="batch.id"
+                              t-att-selected="batch.id == student_info.batch_id.id">
+                              <t t-esc="batch.name" />
+                            </option>
+                          </t>
+                        </select>
+
                       </div>
                     <div class="col-md-6 col-sm-12">
                       <div class="form-group mb-3">
@@ -648,27 +647,36 @@
                         <div class="form-group mb-3">
                           <label for="semester_id">
                               Semester</label>
-                          <select class="form-control" id="department_id"
-                            t-att-value="student_info.department_id"
-                            name="department_id">
+                          <select class="form-control" id="semester_id"
+                            name="semester_id">
                             <option>Choose
                                 Semester</option>
-                            <option>Type One</option>
-                            <option>Type Two</option>
+                            <t t-foreach="semester" t-as="semester">
+                                <option t-att-value="semester.id"
+                                  t-att-selected="semester.id == student_info.semester_id.id">
+                                  <t t-esc="semester.name" />
+                                </option>
+                              </t>
+                            
                             </select>
                           </div>
-                        <div class="form-group mb-3">
+                          
+                        <!-- <div class="form-group mb-3">
                           <label for="semester_type_id">Semester
                               Type</label>
-                          <select class="form-control" id="semester_type_id"
-                            t-att-value="student_info.semester_type_id"
-                            name="semester_type_id">
-                            <option>Choose Semester Type</option>
-                            <option>Type
-                                One</option>
-                            <option>Type Two</option>
+                            <select class="form-control" id="semester_type_id"
+                              name="semester_type_id">
+                              <option>Choose
+                                Semester Type</option>
+                              <t t-foreach="semester_type" t-as="semester_type">
+                                <option t-att-value="semester_type.id"
+                                  t-att-selected="semester_type.id == student_info.semester_type_id.id">
+                                  <t t-esc="semester_type.name" />
+                                </option>
+                              </t>
+
                             </select>
-                          </div>
+                          </div> -->
                         <div class="form-group mb-3">
                           <label for="semester_year_string">Semester
                               Year</label>
@@ -697,36 +705,39 @@
                           name="form_apply_type">
                           <option>Choose
                               Apply Type</option>
-                          <option value="offline">Offline</option>
-                          <option value="online">Online</option>
+                          <option value="offline"
+                              t-att-selected="student_info.form_apply_type == 'offline'">
+                              Offline</option>
+                          <option value="online"
+                              t-att-selected="student_info.form_apply_type == 'online'">Online</option>
                           </select>
                         </div>
-                      <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="student_type">Student
-                            Type</label>
-                        <select class="form-control" id="student_type"
-                          t-att-value="student_info.student_type"
-                          name="student_type">
-                          <option>Choose Student Type</option>
-                          <option value="local">Local</option>
-                          <option value="international">
-                              International</option>
+                        <div class="form-group mb-3">
+                          <label for="student_type_id">Student Type</label>
+                          <select class="form-control" id="student_type_id" name="student_type_id">
+                            <option>Choose Student Type</option>
+                            <option t-foreach="type" t-as="type"
+                              t-att-value="type.id"
+                              t-att-selected="type.id == student_info.student_type_id.id">
+                              <t t-esc="type.name" />
+                            </option>
                           </select>
+
                         </div>
 
                       </div>
                     <div class="row">
                       <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="education_shift_id">Education
-                            Shift</label>
-                        <select class="form-control" id="education_shift_id"
-                          t-att-value="student_info.education_shift_id"
-                          name="education_shift_id">
-                          <option>Choose Education Shift</option>
-                          <option>Type One</option>
-                          <option>Type
-                              Two</option>
+                          <label for="education_shift_id">Education Shift Type</label>
+                          <select class="form-control" id="education_shift_id" name="education_shift_id">
+                            <option>Choose Education  Shift</option>
+                            <option t-foreach="shift" t-as="shift"
+                              t-att-value="shift.id"
+                              t-att-selected="shift.id == student_info.education_shift_id.id">
+                              <t t-esc="shift.name" />
+                            </option>
                           </select>
+
                         </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
                         <label for="campus_type">
