@@ -3,9 +3,20 @@
     <template id="portal_my_home" name="My POrtal" inherit_id="portal.portal_my_home">
       <xpath expr="//div[contains(@class, 'o_portal_my_home')]" position="before">
         <div class="row">
+          <!-- <div class="col-md-6 col-xs-12">
+            <div class="card gap-1 ">
+              <div class="card-body bg-primary">
+                <div class="card-body">
+                  <a href="/my/admission/online/applications/student" class="card-link">Student
+                    Dashboard</a>
+                </div>
+              </div>
+            </div>
+          </div> -->
           <div class="col-md-6 col-xs-12">
-            <div style="background: linear-gradient(to bottom, #00cec9, #ffbe76);"
-              class="card gap-1 ">
+            <div
+              style="box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);"
+              class="card gap-1">
               <div class="card-body bg-primary">
                 <div class="card-body">
                   <a href="/my/admission/online/applications/student" class="card-link">Student
@@ -14,17 +25,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-xs-12">
-            <div style="background: linear-gradient(to bottom, #00cec9, #ffbe76);"
-              class="card gap-1">
-              <div class="card-body bg-secondary">
-                <div class="card-body bg-info">
-                  <a href="/my/parent" class="card-link">Parent
-                    Dashboard</a>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </xpath>
     </template>
@@ -35,7 +36,8 @@
         <div class="container ">
           <div class="row">
             <div class="col-md-4 col-sm-12 p-2  ">
-              <div style="background: linear-gradient(to bottom, #00cec9, #ffbe76);"
+              <div
+                style="background: linear-gradient(to bottom, #20cdf888, #000000); box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);"
                 class="card">
                 <div class="card-header fw-5 text-white">Personal Infromation</div>
                 <div class="my-2 card-body">
@@ -113,7 +115,7 @@
             </div>
             <div class="col-md-8  col-sm-12 p-2 mt-3 ">
               <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-              <div class="card">
+              <div class="card" style="box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);">
                 <div class="card-header bg-dark text-white">
                   Student Progress
                 </div>
@@ -169,7 +171,7 @@
         <div class="container p-5">
           <div class="row">
             <div class="col-sm-12 col-md-4 ">
-              <div class="card">
+              <div class="card" style="box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);">
                 <div class="card-body">
                   <h5 class="card-title">Applied
                     Application List</h5>
@@ -179,7 +181,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-4">
-              <div class="card">
+              <div class="card" style="box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);">
                 <div class="card-body">
                   <h5 class="card-title">Applied
                     Application List</h5>
@@ -188,7 +190,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-4">
-              <div class="card">
+              <div class="card" style="box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);">
                 <div class="card-body">
                   <h5 class="card-title">Applied
                     Application List</h5>
@@ -236,12 +238,12 @@
                 <td>
                   <a
                     href="/my/admission/online/applications/list/form">
-                    <button name="view" class="btn btn-outline-danger btn-sm">
+                    <button name="view" class="btn btn-outline-info btn-sm">
                       View</button>
                   </a>
                   <a
                     href="/my/admission/online/applications/list/form?informations={{ res_user.user_id or '' }}">
-                    <button name="update"  class="btn btn-outline-danger btn-sm">
+                    <button name="update"  class="btn btn-outline-primary btn-sm">
                       Update</button>
                   </a>
 
@@ -513,20 +515,36 @@
                         <label for="program_id">Select
                             Program</label>
                           <select class="form-control" id="program_id" name="program_id"
-                            t-att-value="student_info.program_id">
+                            >
                             <option value="">Choose Program</option>
-                            <option 
-                              t-att-selected="student_info.program_id.name">Bachelor's
-                              Degree</option>
-                            <option 
-                              t-att-selected="student_info.program_id.name">Master's
-                              Degree</option>
-                            <option 
-                              t-att-selected="student_info.program_id.name">
-                              PhD</option>
+                            <t t-foreach="program" t-as="program">
+                              <option t-att-value="program.id"
+                                t-att-selected="program.id == student_info.program_id.id">
+                                <t t-esc="program.name" />
+                              </option>
+                            </t>
+
                           </select>
 
                         </div>
+                        <!--  -->
+
+                        <div class="form-group mb-3 ">
+                          <label for="curriculum_id">
+                            Curriculum</label>
+                          <select class="form-control" id="curriculum_id"
+                            t-att-value="student_info.curriculum_id"
+                            name="curriculum_id">
+                            <option>Choose
+                              Curriculum</option>
+                            <option value="british"
+                              t-att-selected="student_info.curriculum_id == 'british'">British</option>
+                            <option value="national"
+                              t-att-selected="student_info.curriculum_id == 'national'">
+                              National</option>
+                          </select>
+                        </div>
+
                         <!-- <div class="form-group mb-3">
                         <label for="curriculum_id">
                             Curriculumn</label>
@@ -534,25 +552,26 @@
                             t-att-value="student_info.curriculum_id">
                             <option value="">Choose Curriculum</option>
                             <option value="british"
-                              t-att-selected="student_info.curriculum_id === 'british'">British</option>
+                              t-att-selected="student_info.curriculum_id === 'british'">
+                              British</option>
                             <option value="national"
                               t-att-selected="student_info.curriculum_id === 'national'">National</option>
-                            <option value="phd"
-                              t-att-selected="student_info.curriculum_id === 'phd'">
-                              PhD</option>
                           </select>
 
                         </div> -->
+                        <div class="form-group mb-3">
+                        <label for="batch_id">
+                            Choose Batch</label>
                         <select class="form-control" id="batch_id" name="batch_id">
                           <option>Choose Batch</option>
                           <t t-foreach="batch" t-as="batch">
                             <option t-att-value="batch.id"
                               t-att-selected="batch.id == student_info.batch_id.id">
                               <t t-esc="batch.name" />
-                            </option>
-                          </t>
-                        </select>
-
+                              </option>
+                            </t>
+                          </select>
+                        </div>
                       </div>
                     <div class="col-md-6 col-sm-12">
                       <div class="form-group mb-3">
@@ -698,8 +717,36 @@
                   <div>
                     <h5 class="my-4">Academic</h5>
                     <div class="row">
+                        <div class="form-group mb-3 col-md-6 col-sm-12">
+                          <label for="form_type">Form Type</label>
+                          <select class="form-control" id="form_type"
+                            t-att-value="student_info.form_type"
+                            name="form_type">
+                            <option>Choose
+                              Form Type</option>
+                            <option value="local_bachelor_program_hsc"
+                              t-att-selected="student_info.form_type == 'local_bachelor_program_hsc'">
+                              Local-Bachelor Program - HSC</option>
+                            <option value="local_bachelor_program_a_level"
+                              t-att-selected="student_info.form_type == 'local_bachelor_program_a_level'">Local-Bachelor
+                              Program - A-Level</option>
+                              <option value="local_bachelor_program_diploma"
+                              t-att-selected="student_info.form_type == 'local_bachelor_program_diploma'">Local-Bachelor
+                              Program - Diploma</option>
+                              <option value="local_masters_program_bachelor"
+                              t-att-selected="student_info.form_type == 'local_masters_program_bachelor'">Local-Masters
+                              Program - Bachelor</option>
+                              <option value="international_bachelor_program_a_level"
+                              t-att-selected="student_info.form_type == 'international_bachelor_program_a_level'">International-Bachelor
+                              Program</option>
+                              <option value="international_masters_program"
+                              t-att-selected="student_info.form_type == 'international_masters_program'">International
+                              - Masters Program</option>
+                          </select>
+                        </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="form_apply_type">Apply Type</label>
+                        <label for="form_apply_type">Apply
+                            Type</label>
                         <select class="form-control" id="form_apply_type"
                           t-att-value="student_info.form_apply_type"
                           name="form_apply_type">
@@ -713,7 +760,8 @@
                           </select>
                         </div>
                         <div class="form-group mb-3">
-                          <label for="student_type_id">Student Type</label>
+                          <label for="student_type_id">Student
+                            Type</label>
                           <select class="form-control" id="student_type_id" name="student_type_id">
                             <option>Choose Student Type</option>
                             <option t-foreach="type" t-as="type"
@@ -728,9 +776,10 @@
                       </div>
                     <div class="row">
                       <div class="form-group mb-3 col-md-6 col-sm-12">
-                          <label for="education_shift_id">Education Shift Type</label>
+                          <label for="education_shift_id">Education
+                            Shift Type</label>
                           <select class="form-control" id="education_shift_id" name="education_shift_id">
-                            <option>Choose Education  Shift</option>
+                            <option>Choose Education Shift</option>
                             <option t-foreach="shift" t-as="shift"
                               t-att-value="shift.id"
                               t-att-selected="shift.id == student_info.education_shift_id.id">
@@ -746,9 +795,11 @@
                           t-att-value="student_info.campus_type"
                           name="campus_type">
                           <option>Choose Campus</option>
-                          <option value="on_campus">On Campus
+                          <option value="on_campus"
+                              t-att-selected="student_info.campus_type == 'on_campus'">On Campus
                             </option>
-                          <option value="off_campus">Off Campus</option>
+                          <option value="off_campus"
+                              t-att-selected="student_info.campus_type == 'off_campus'">Off Campus</option>
                           </select>
                         </div>
                       </div>
@@ -806,12 +857,15 @@
                         <div class="form-group mb-3 col">
                           <label for="education_board_ssc_id">Education
                               Board</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="education_board_ssc_id"
-                              placeholder="Enter Education Board"
-                            />
+                            <select class="form-control" id="education_board_ssc_id"
+                              name="education_board_ssc_id">
+                              <option>Choose Education Board</option>
+                              <option t-foreach="ssc" t-as="ssc"
+                                t-att-value="ssc.id"
+                                t-att-selected="ssc.id == student_info.education_board_ssc_id.id">
+                                <t t-esc="ssc.name" />
+                              </option>
+                            </select>
                           </div>
                         <div class="form-group mb-3 col">
                           <label for="year_ssc">Year
@@ -843,13 +897,21 @@
                       <div class="form-group mb-3">
                         <label for="ssc_certificate">
                             Certificate</label>
-                        <textarea
+                            <input
+                            type="file"
+                            class="form-control"
+                            id="ssc_certificate"
+                            t-att-value="student_info.ssc_certificate"
+                            name="ssc_certificate"
+                            placeholder="Upload Your Certificate"
+                          />
+                        <!-- <textarea
                           class="form-control"
                           id="ssc_certificate"
                           t-att-value="student_info.ssc_certificate"
                           name="ssc_certificate"
                           rows="3"
-                        ></textarea>
+                        ></textarea> -->
                         </div>
                       </div>
                     <div class="col-md-6">
@@ -883,14 +945,15 @@
                         <div class="form-group mb-3 col">
                           <label for="education_board_hsc_id">Education
                               Board</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="education_board_hsc_id"
-                              t-att-value="student_info.education_board_hsc_id"
-                              name="education_board_hsc_id"
-                              placeholder="Enter Institution Name"
-                            />
+                            <select class="form-control" id="education_board_hsc_id"
+                              name="education_board_hsc_id">
+                              <option>Choose Education Board</option>
+                              <option t-foreach="hsc" t-as="hsc"
+                                t-att-value="hsc.id"
+                                t-att-selected="hsc.id == student_info.education_board_hsc_id.id">
+                                <t t-esc="hsc.name" />
+                              </option>
+                            </select>
                           </div>
                         <div class="form-group mb-3 col">
                           <label for="year_hsc">Year
@@ -922,12 +985,14 @@
                       <div class="form-group mb-3">
                         <label for="hsc_certificate">
                             Certificate</label>
-                        <textarea
-                          class="form-control"
-                          id="hsc_certificate"
-                          name="hsc_certificate"
-                          rows="3"
-                        ></textarea>
+                        <input
+                            type="file"
+                            class="form-control"
+                            id="hsc_certificate"
+                            t-att-value="student_info.hsc_certificate"
+                            name="hsc_certificate"
+                            placeholder="Upload Your Certificate"
+                          />
                         </div>
                       </div>
                     </div>
@@ -937,15 +1002,16 @@
                           O-Level</h5>
                       <div class="form-row ">
                         <div class="form-group mb-3 col">
-                          <label for="education_board_o_level_id">Registration Number</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="education_board_o_level_id"
-                              t-att-value="student_info.education_board_o_level_id"
-                              name="education_board_o_level_id"
-                              placeholder="Enter Registration Number"
-                            />
+                          <label for="education_board_o_level_id">Education Board</label>
+                            <select class="form-control" id="education_board_o_level_id"
+                              name="education_board_o_level_id">
+                              <option>Choose Education Board</option>
+                              <option t-foreach="o_level" t-as="o_level"
+                                t-att-value="o_level.id"
+                                t-att-selected="o_level.id == student_info.education_board_o_level_id.id">
+                                <t t-esc="o_level.name" />
+                              </option>
+                            </select>
                           </div>
                           <!-- <div class="form-group mb-3 col">
                           <label for="inputRoll">Roll
@@ -997,13 +1063,16 @@
                         </div>
 
                       <div class="form-group mb-3">
-                        <label for="inputAchievements">
-                            Achievements</label>
-                        <textarea
-                          class="form-control"
-                          id="inputAchievements"
-                          rows="3"
-                        ></textarea>
+                        <label for="o_level_certificate">
+                            Transcript</label>
+                          <input
+                            type="file"
+                            class="form-control"
+                            id="o_level_certificate"
+                            t-att-value="student_info.o_level_certificate"
+                            name="o_level_certificate"
+                            placeholder="Upload Your Certificate"
+                          />
                         </div>
                       </div>
                     <div class="col-md-6">
@@ -1011,15 +1080,16 @@
                           A-Level</h5>
                       <div class="form-row ">
                         <div class="form-group mb-3 col">
-                          <label for="education_board_a_level_id">Registration Number</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="education_board_a_level_id"
-                              t-att-value="student_info.education_board_a_level_id"
-                              name="education_board_a_level_id"
-                              placeholder="Enter Registration Number"
-                            />
+                          <label for="education_board_a_level_id">Education Board</label>
+                            <select class="form-control" id="education_board_a_level_id"
+                              name="education_board_a_level_id">
+                              <option>Choose Education Board</option>
+                              <option t-foreach="a_level" t-as="a_level"
+                                t-att-value="a_level.id"
+                                t-att-selected="a_level.id == student_info.education_board_a_level_id.id">
+                                <t t-esc="a_level.name" />
+                              </option>
+                            </select>
                           </div>
                           <!-- <div class="form-group mb-3 col">
                           <label for="inputRoll">Roll
@@ -1057,7 +1127,7 @@
                             />
                           </div>
                         </div>
-                      <div class="form-group mb-3 col">
+                      <!-- <div class="form-group mb-3 col">
                         <label for="admission_board_result_a_level_ids">
                             Result</label>
                           <input
@@ -1068,24 +1138,25 @@
                             name="admission_board_result_a_level_ids"
                             placeholder="Enter Field of Study"
                           />
-                        </div>
+                        </div> -->
 
                       <div class="form-group mb-3">
-                        <label for="admission_achievement_ids">
-                            Achievements</label>
-                        <textarea
-                          class="form-control"
-                          id="admission_achievement_ids"
-                          t-att-value="student_info.admission_achievement_ids"
-                          name="admission_achievement_ids"
-                          rows="3"
-                        ></textarea>
+                        <label for="a_level_certificate">
+                            Transcript</label>
+                        <input
+                            type="file"
+                            class="form-control"
+                            id="a_level_certificate"
+                            t-att-value="student_info.a_level_certificate"
+                            name="a_level_certificate"
+                            placeholder="Upload Your Certificate"
+                          />
                         </div>
                       </div>
                     </div>
                     <!-- class="d-flex justify-content-end" -->
                   <div class="d-flex justify-content-end">
-                    <div>
+                    <div class="m-1">
                       <a class="text-decoration-none" href="#topp">
                         <button
                           type="button"
@@ -1096,7 +1167,7 @@
                           </button>
                         </a>
                       </div>
-                    <div>
+                    <div class="m-1">
                       <a class="text-decoration-none" href="#topp">
                         <button
                           type="button"
@@ -1272,13 +1343,18 @@
                           <label for="permanent_district_id" class="form-label"
                           >Permanent
                               District</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="permanent_district_id"
-                              name="permanent_district_id"
+                            <select class="form-control" id="permanent_district_id"
                               t-att-value="student_info.permanent_district_id"
-                            />
+                              name="permanent_district_id">
+                              <option>Choose
+                                Permanent District</option>
+                              <option value="dhaka"
+                                t-att-selected="student_info.permanent_district_id == 'dhaka'">Dhaka</option>
+                              <option value="ctg"
+                                t-att-selected="student_info.permanent_district_id == 'ctg'">
+                                Chattogram</option>
+
+                            </select>
                           </div>
                         <div class='mb-3'>
                           <label for="country_id" class="form-label"
@@ -1314,9 +1390,18 @@
                           <label for="present_district_id" class="form-label"
                           >Present
                               District</label>
-                            <input type="text" class="form-control"
-                              id="present_district_id" t-att-value="student_info.present_district_id"
-                              name="present_district_id" />
+                            <select class="form-control" id="present_district_id"
+                              t-att-value="student_info.present_district_id"
+                              name="present_district_id">
+                              <option>Choose
+                                Present District</option>
+                              <option value="dhaka"
+                                t-att-selected="student_info.present_district_id == 'dhaka'">Dhaka</option>
+                              <option value="ctg"
+                                t-att-selected="student_info.present_district_id == 'ctg'">
+                                Chattogram</option>
+                              
+                            </select>
                           </div>
                         <div class='mb-3'>
                           <label for="present_country_id" class="form-label"
@@ -1403,14 +1488,14 @@
                           <input type="text" class="form-control" id="nationalID" />
                         </div>
                       <div class="form-group mb-3 col-md-6 col-sm-12">
-                        <label for="passport_no">Passport
+                        <label for="passport_expire_date">Passport
                             Expire Date</label>
                           <input
                             type="date"
                             class="form-control"
-                            id="passport_no"
-                            t-att-value="student_info.passport_no"
-                            name="passport_no"
+                            id="passport_expire_date"
+                            t-att-value="student_info.passport_expire_date"
+                            name="passport_expire_date"
                             placeholder="Enter Expire Date of Passport"
                           />
                         </div>
@@ -1604,7 +1689,7 @@
 
                     </div>
                   <div class="d-flex justify-content-end">
-                    <div>
+                    <div class="m-1">
                       <a class="text-decoration-none" href="#topp">
                         <button
                           type="button"
@@ -1615,7 +1700,7 @@
                           </button>
                         </a>
                       </div>
-                    <div>
+                      <div class="m-1">
                       <a class="text-decoration-none" href="#topp">
                         <button
                           type="button"
@@ -2001,7 +2086,7 @@
 
                     </div>
                   <div class="d-flex justify-content-end">
-                    <div>
+                      <div class="m-1">
                       <a class="text-decoration-none" href="#topp">
                         <button
                           type="button"
@@ -2012,7 +2097,7 @@
                           </button>
                         </a>
                       </div>
-                    <div>
+                      <div class="m-1">
                       <a class="text-decoration-none" href="#topp">
                         <button
                           type="button"
@@ -2192,20 +2277,22 @@
                       </div>
                     </div>
                   <div class="d-flex justify-content-end">
-                    <div>
+                    <div class="m-1">
                       <a class="text-decoration-none" href="#topp">
                         <button
                           type="button"
-                          class="btn btn-outline-danger my-5"
+                          class="btn btn-outline-danger "
                           onclick="prevSection()"
                         >
                             Previous
                           </button>
                         </a>
                       </div>
-                    <div>
-                        <button type="submit" name="update" class="btn btn-primary">
-                          Update</button>
+                      <div class="m-1">
+                        <div>
+                          <button type="submit" name="update" class="btn btn-primary">
+                            Update</button>
+                        </div>
                       </div>
                     </div>
                   </div>
