@@ -19,9 +19,11 @@ class MyPortalController(http.Controller):
 
     @http.route('/my/admission/online/applications/list', type='http', auth='user', website=True)
     def my_student_admission_route(self, **kw):
+        user = request.env.user
         applicant_info = http.request.env['se.application'].search([])
         return request.render("smartedu_portal.se_student_application_list", {
             'informations': applicant_info,
+            'user': user,
         })
 
     # @http.route('/my/admission/online/applications/list/form', type='http', auth='user', website=True)

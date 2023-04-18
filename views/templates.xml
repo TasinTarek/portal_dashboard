@@ -1532,7 +1532,8 @@
                             class="form-check-input"
                             type="checkbox"
                             id="know_the_diu_from_website"
-                            t-att-value="student_info.know_the_diu_from_website"
+                            t-att-selected="student_info.know_the_diu_from_website == 'know_the_diu_from_website'"
+                            
                             name="know_the_diu_from_website"
                           />
                         <label class="form-check-label" for="know_the_diu_from_website"
