@@ -15,7 +15,7 @@ class MyPortalController(http.Controller):
             [('user_id', '=', user.id)], limit=1)
         return request.render("smartedu_portal.se_student_template", {
             'info': information,
-            'user': user,            
+                        
         })
 
     @http.route('/my/admission/online/applications/list', type='http', auth='user', website=True)
@@ -25,7 +25,7 @@ class MyPortalController(http.Controller):
             [('user_id', '=', user.id)], limit=1)
         return request.render("smartedu_portal.se_student_application_list", {
             'informations': applicant_info,
-            'user': user,
+          
         })
 
     # @http.route('/my/admission/online/applications/list/form', type='http', auth='user', website=True)
@@ -70,7 +70,7 @@ class MyPortalController(http.Controller):
         a_level = request.env['se.education.board'].sudo().search([])
         return request.render('smartedu_portal.se_student_admission_template', {
             # Relational Fields:
-            'user': user,
+            
             "student_info": student_info,
             "batch" : batch, 
             "type" : type, 
@@ -145,7 +145,7 @@ class MyPortalController(http.Controller):
         student_info.curriculum_id = kw["curriculum_id"]
         student_info.fees = kw["fees"]
         student_info.admission_fee = kw["admission_fee"]
-        student_info.fees_term_id = kw["fees_term_id"]
+        # student_info.fees_term_id = kw["fees_term_id"]
         student_info.order_id = kw["order_id"]
         student_info.academic_faculty_id = kw["academic_faculty_id"]
         student_info.department_id = kw["department_id"]
@@ -298,11 +298,9 @@ class MyPortalController(http.Controller):
             "know_the_diu_from_diu_student": student_info.know_the_diu_from_diu_student,
             "know_the_diu_from_diu_employee": student_info.know_the_diu_from_diu_employee,
             "know_the_diu_from_others": student_info.know_the_diu_from_others,
-        })
+#         })
 
-        return request.redirect('/my/admission/online/applications/list',{
-            'user': user,
-        })
+        return request.redirect('/my/admission/online/applications/list')
 
 
    
