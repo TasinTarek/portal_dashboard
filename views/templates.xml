@@ -605,7 +605,7 @@
                           </div>
                         </div>
 
-                      <div class="form-group mb-3">
+                      <!-- <div class="form-group mb-3">
                         <label for="fees_term_id">Fees
                             Type</label>
                         <select class="form-control" id="fees_term_id" t-att-value="student_info.fees_term_id"
@@ -615,7 +615,7 @@
                           <option>Type
                               Two</option>
                           </select>
-                        </div>
+                        </div> -->
                       <div class="form-group mb-3">
                         <label for='order_id'>Registration
                             Fees Ref.</label>

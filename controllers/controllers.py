@@ -11,7 +11,8 @@ class MyPortalController(http.Controller):
     @http.route('/my/admission/online/applications/student', type='http', auth='user', website=True)
     def my_student_route(self, **kw):
         user = request.env.user
-        information = http.request.env['se.student'].search([])
+        information = http.request.env['se.student'].search(
+            [('user_id', '=', user.id)], limit=1)
         return request.render("smartedu_portal.se_student_template", {
             'info': information,
             'user': user,            
@@ -20,7 +21,8 @@ class MyPortalController(http.Controller):
     @http.route('/my/admission/online/applications/list', type='http', auth='user', website=True)
     def my_student_admission_route(self, **kw):
         user = request.env.user
-        applicant_info = http.request.env['se.application'].search([])
+        applicant_info = http.request.env['se.application'].search(
+            [('user_id', '=', user.id)], limit=1)
         return request.render("smartedu_portal.se_student_application_list", {
             'informations': applicant_info,
             'user': user,
@@ -50,9 +52,12 @@ class MyPortalController(http.Controller):
     #            'student_info': student_info,
     #        })
 
-    @http.route('/my/admission/online/applications/list/form', auth='public', website=True)
+    @http.route('/my/admission/online/applications/list/form', auth='user', website=True)
     def update_form(self, **kw):
-        student_info = request.env['se.application'].sudo().search([])
+        user = request.env.user
+        
+        student_info = request.env['se.application'].sudo().search(
+            [('user_id', '=', user.id)], limit=1)
         batch = request.env['se.batch'].sudo().search([])
         shift = request.env['se.education.shift'].sudo().search([])
         type = request.env['se.student.type'].sudo().search([])
@@ -65,6 +70,7 @@ class MyPortalController(http.Controller):
         a_level = request.env['se.education.board'].sudo().search([])
         return request.render('smartedu_portal.se_student_admission_template', {
             # Relational Fields:
+            'user': user,
             "student_info": student_info,
             "batch" : batch, 
             "type" : type, 
@@ -78,11 +84,11 @@ class MyPortalController(http.Controller):
             "a_level": a_level,
         })
 
-    @http.route('/my/admission/online/applications/update', auth='public', website=True)
+    @http.route('/my/admission/online/applications/update', auth='user', website=True)
     def update(self, **kw):
-        request.env.context.get('user_id')
+        user = request.env.user
         # get student info
-        student_info = request.env['se.application'].sudo().search([])
+        student_info = request.env['se.application'].sudo().search([('user_id', '=', user.id)], limit=1)
 
         # update student info with new values
         student_info.first_name = kw["first_name"]
@@ -294,7 +300,9 @@ class MyPortalController(http.Controller):
             "know_the_diu_from_others": student_info.know_the_diu_from_others,
         })
 
-        return request.redirect('/my/admission/online/applications/list')
+        return request.redirect('/my/admission/online/applications/list',{
+            'user': user,
+        })
 
 
    
